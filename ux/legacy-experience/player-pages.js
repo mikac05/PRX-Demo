@@ -18,12 +18,12 @@
   const brand = (c) => {
     const t = c?.theme || "NG";
     if (t === "PH")
-      return '<span class="p-logo-asset p-logo-ph" aria-label="PH LOGO"><span class="p-logo-letters">PH</span></span>';
+      return '<span role="img" class="p-logo-asset p-logo-ph" aria-label="PH LOGO"><span class="p-logo-letters">PH</span></span>';
     if (t === "SF")
-      return '<span class="p-logo-asset p-logo-sf" aria-label="SF LOGO"><span class="p-logo-letters">SF</span></span>';
+      return '<span role="img" class="p-logo-asset p-logo-sf" aria-label="SF LOGO"><span class="p-logo-letters">SF</span></span>';
     if (t === "IN")
-      return '<span class="p-logo-asset p-logo-in" aria-label="IN LOGO"><span class="p-logo-letters">IN</span></span>';
-    return '<span class="p-logo-asset p-logo-ng" aria-label="NGSS"><span class="p-logo-letters"></span><span class="p-logo-accent"></span></span>';
+      return '<span role="img" class="p-logo-asset p-logo-in" aria-label="IN LOGO"><span class="p-logo-letters">IN</span></span>';
+    return '<span role="img" class="p-logo-asset p-logo-ng" aria-label="NGSS"><span class="p-logo-letters"></span><span class="p-logo-accent"></span></span>';
   };
   const tabs = (c, action, labels, selected) =>
     `<div class="pp-tabs" role="group">${labels.map(([zh, en], i) => button(action, t(c, zh, en), `data-index="${i}" aria-pressed="${selected === i}"`)).join("")}</div>`;

@@ -252,18 +252,18 @@
   }
   function brand(c) {
     if (c.theme === "NG") {
-      return '<span class="p-logo p-logo-asset p-logo-ng" aria-label="NG LOGO"><span class="p-logo-letters"></span><span class="p-logo-accent"></span></span>';
+      return '<span role="img" class="p-logo p-logo-asset p-logo-ng" aria-label="NG LOGO"><span class="p-logo-letters"></span><span class="p-logo-accent"></span></span>';
     }
     if (c.theme === "PH") {
-      return '<span class="p-logo p-logo-asset p-logo-ph" aria-label="PH LOGO"><span class="p-logo-letters">PH</span></span>';
+      return '<span role="img" class="p-logo p-logo-asset p-logo-ph" aria-label="PH LOGO"><span class="p-logo-letters">PH</span></span>';
     }
     if (c.theme === "SF") {
-      return '<span class="p-logo p-logo-asset p-logo-sf" aria-label="SF LOGO"><span class="p-logo-letters">SF</span></span>';
+      return '<span role="img" class="p-logo p-logo-asset p-logo-sf" aria-label="SF LOGO"><span class="p-logo-letters">SF</span></span>';
     }
     if (c.theme === "IN") {
-      return '<span class="p-logo p-logo-asset p-logo-in" aria-label="IN LOGO"><span class="p-logo-letters">IN</span><span class="p-in-badge">' + text(c, "印度", "India") + '</span></span>';
+      return '<span role="img" class="p-logo p-logo-asset p-logo-in" aria-label="IN LOGO"><span class="p-logo-letters">IN</span><span class="p-in-badge">' + text(c, "印度", "India") + '</span></span>';
     }
-    return '<span class="p-logo" aria-label="' +
+    return '<span role="img" class="p-logo" aria-label="' +
       esc(c.theme + " LOGO") +
       '"><b>' +
       esc(c.theme) +
