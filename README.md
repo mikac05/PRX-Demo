@@ -2,7 +2,7 @@
 
 [Open the interactive demo](https://mikac05.github.io/PRX-Demo/)
 
-The demo opens the service desk and customer simulator together. Use **Demo 工具**
+The demo opens the service desk with a collapsed customer preview button. Use **Demo 工具**
 to select a workspace, role or channel, replay/reset a scenario, or open the desk
 and customer in separate tabs. Tabs must share the same browser profile and Session.
 
