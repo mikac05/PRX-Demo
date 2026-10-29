@@ -1,14 +1,17 @@
 # PRX Demo
 
-[Open PRX Demo](https://mikac05.github.io/PRX-Demo/)
+[Open the interactive demo](https://mikac05.github.io/PRX-Demo/)
 
-The complete UX version is the single Demo at the main URL. Old /ux/ links redirect
-here and preserve their route and Demo context. Use Demo 工具 to select synthetic
-workspaces, roles and channels, or open same-Session tabs in one browser profile.
+The demo opens the service desk and customer simulator together. Use **Demo 工具**
+to select a workspace, role or channel, replay/reset a scenario, or open the desk
+and customer in separate tabs. Tabs must share the same browser profile and Session.
 
-Synthetic frontend only: no real login, Telegram/API, money operations or outbound
-messages. State lives in memory; closing all Session tabs loses it. Existing tabs
-on the former /ux/ app must reopen the main URL to use the shared Session namespace.
+All customers and messages are synthetic. State stays in browser memory and is lost
+when all session tabs close. No real Telegram, backend, login or outbound messaging.
+Separate browsers and devices do not synchronize. Role permissions are prototype behavior.
 
-This public repository contains compiled assets only. Private source, tests and
-documents stay in PRX. build-info.json records source provenance and artifact hashes.
+This repository contains only the compiled frontend and display assets. Source code,
+design documents and development tests remain in the private PRX repository.
+`build-info.json` records the source commit and asset hashes. Frontend code and assets
+can be inspected by every visitor. Changes are published from the reviewed source;
+do not edit generated assets here.
