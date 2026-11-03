@@ -26,6 +26,8 @@ a { color:var(--link); text-underline-offset:.22em }
 .mast-inner { display:flex; align-items:center; min-height:68px; gap:1.1rem; border-bottom:1px solid var(--muted) }
 .wordmark { font-size:1.45rem; font-weight:850; line-height:1; letter-spacing:-.04em }
 .mast small { color:var(--on-dark); font-size:.875rem }
+.mast-inner a { margin-left:auto; color:var(--on-dark); font-size:.94rem }
+.mast-inner a:focus-visible { outline-color:var(--on-dark) }
 .hero { display:grid; grid-template-columns:minmax(0,1.16fr) minmax(0,.84fr); align-items:center; gap:4rem; padding:4rem 0 4.5rem }
 h1,h2,h3,p,figure { margin:0 }
 h1,h2 { text-wrap:balance; letter-spacing:-.035em; line-height:1.2 }
@@ -58,6 +60,9 @@ h3 { font-size:1.1rem; line-height:1.5 }
 .lead { max-width:42em; margin:.9rem 0 1.6rem; font-size:1.1rem; color:var(--muted) }
 .bridge { margin:1.45rem 0 0; font-weight:700 }
 .bridge a { display:inline-block; padding:.35rem 0 }
+.related { display:flex; flex-wrap:wrap; align-items:baseline; gap:.15rem 1.1rem; margin:1.05rem 0 0; font-size:.94rem }
+.related span { color:var(--muted) }
+.related a { display:inline-block; padding:.28rem 0 }
 .example { margin:0 0 1.35rem; padding:1.3rem 1.55rem; border:1px solid var(--rule); border-radius:8px; background:var(--white) }
 .example blockquote { margin:0; font:700 1.5rem/1.55 var(--serif) }
 .example p { margin-top:.35rem; color:var(--muted) }
@@ -130,7 +135,7 @@ summary:hover { background:var(--tint) }
 <a class="skip" href="#need">跳到正文</a>
 <header class="mast" id="top">
   <div class="frame">
-    <div class="mast-inner"><span class="wordmark">PRX</span><small>產品與商業設計</small></div>
+    <div class="mast-inner"><span class="wordmark">PRX</span><small>產品與商業設計</small><a href="./guide.html">產品與整合指南</a></div>
     <div class="hero">
       <div>
         <h1>從一筆提款詢問<span>讀懂 PRX</span></h1>
@@ -181,6 +186,7 @@ summary:hover { background:var(--tint) }
           <p>如果現有流程已能查對證據、接續工作並追蹤承諾，就縮小切入範圍。現階段這是待驗證的需求假說。</p>
         </div></details>
       </div>
+      <p class="related"><span>延伸閱讀</span><a href="./guide.html#research">需求訪談與試點驗證</a></p>
       <p class="bridge"><a href="#business">如果案件更容易處理，誰會為這個價值買單？</a></p>
     </section>
 
@@ -207,6 +213,7 @@ summary:hover { background:var(--tint) }
           <p>如果未來測試 AI 成果計價，先定義解決、重開、人工接手、重複計費與申訴的口徑。正式價格與合作條件待取證。</p>
         </div></details>
       </div>
+      <p class="related"><span>延伸閱讀</span><a href="./guide.html#business">銷售通路、計費與成本</a></p>
       <p class="bridge"><a href="#product">同一個產品要支援不同交付方式，核心該管哪些事？</a></p>
     </section>
 
@@ -262,6 +269,12 @@ summary:hover { background:var(--tint) }
           <p>工作區按品牌與服務範圍管理成員及資料。客服與主管依職責取得操作權限。產品可依需求搭配客服、Bot、品牌外觀及受眾旅程，模組可分開評估及啟用。</p>
         </div></details>
       </div>
+      <p class="related"><span>延伸閱讀</span>
+        <a href="./guide.html#delivery">獨立工作台、嵌入與 API 比較</a>
+        <a href="./guide.html#ownership">資料與案件責任</a>
+        <a href="./guide.html#embed">限定嵌入設計</a>
+        <a href="./guide.html#api">API 與事件契約</a>
+      </p>
       <p class="bridge"><a href="#ngss3">用 NGSS3 驗證這套分工，第一條路徑怎麼走？</a></p>
     </section>
 
@@ -318,6 +331,11 @@ summary:hover { background:var(--tint) }
           <p>以可重跑的驗收記錄區分合成、契約與授權環境的證據。NGSS3 接入與試點目前仍待驗證。</p>
         </div></details>
       </div>
+      <p class="related"><span>延伸閱讀</span>
+        <a href="./guide.html#ngss3">NGSS3 接入準備與注意事項</a>
+        <a href="./guide.html#sso">SSO 方案與撤權流程</a>
+        <a href="./guide.html#deeplinks">NGSS3 深層連結入口與去向</a>
+      </p>
       <p class="bridge"><a href="#future">這條路徑跑通後，哪些證據才值得擴大投入？</a></p>
     </section>
 
@@ -340,6 +358,10 @@ summary:hover { background:var(--tint) }
           <p>Telegram Bot 可優先探索自助查詢與真人轉接，讓客服能接續案件。品牌外觀與受眾旅程依各自用途、授權及成本驗證，可獨立選用。知識與 AI 先協助客服查證和擬稿，由人審閱。</p>
         </div></details>
       </div>
+      <p class="related"><span>延伸閱讀</span>
+        <a href="./guide.html#platforms">如何接入第二個平台</a>
+        <a href="./guide.html#rollout">擴展與驗收門檻</a>
+      </p>
       <p class="bridge"><a href="#demo">回到這筆提款詢問，到 Demo 看客服怎麼處理。</a></p>
     </section>
 
@@ -377,10 +399,11 @@ summary:hover { background:var(--tint) }
         <a class="button" href="https://mikac05.github.io/PRX-Demo/#/demo" target="_blank" rel="noopener">開啟合成 Demo（新分頁）</a>
         <span>客服與玩家情境使用合成資料。</span>
       </div>
+      <p class="related"><span>延伸閱讀</span><a href="./guide.html#demo">Demo 走查步驟與適用範圍</a></p>
     </section>
   </main>
 </div>
-<footer class="frame footer"><span>PRX 產品設計與體驗 Demo　2026 年 11 月 3 日</span><a href="#top">回到開頭</a></footer>
+<footer class="frame footer"><span>PRX 產品設計與體驗 Demo　2026 年 11 月 3 日</span><a href="./guide.html">產品與整合指南</a><a href="#top">回到開頭</a></footer>
 <script>
 for (const switcher of document.querySelectorAll('[data-switcher]')) {
   const choices = switcher.querySelector('.choices');

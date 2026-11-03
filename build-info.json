@@ -1,7 +1,7 @@
 {
   "source_commit": "79e54bc4b990183c41ce725d5d00c956ca83e133",
   "base": "/PRX-Demo/",
-  "presentation_sha256": "b028d7ed2397480c2489decde2b6fab11d3b6651bfede3e63cf520379e2b8c16",
+  "presentation_sha256": "393ef2f52a85140395af0e3726d545151a1010434a9be8d992e2e769ba6a88de",
   "kind": "synthetic-frontend-prototype",
   "files": {
     "assets/index-CNx64yf_.css": "9d939a26035e193386e7b78835ff4aacd478e7a1a9c66427e3d4f6b82c9642ac",
@@ -116,5 +116,6 @@
     "legacy-experience/player-pages.js": "3c430a16455c24a0b73b5b5bf07e9f333f5fab6f655bba5c1599e049c04f668c",
     "legacy-experience/player-preview.js": "d4280a87aa593b04c031cb4256ff4f8c4b2bb87f092c6971215b9fb46d5342ef",
     "legacy-experience/selection-guard.js": "91bed3cf664395f7b6d12d5fbc52c79360158b94f9bce12bbe070e7772e3a83c"
-  }
+  },
+  "presentation_guide_sha256": "6cb9406b49eabd58fad92e9279190fef73111b843624da142f5eef256ac94796"
 }

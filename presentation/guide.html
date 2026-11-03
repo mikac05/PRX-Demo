@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="PRX 公開延伸指南，涵蓋 NGSS3 首接、單一登入、深層連結、交付模式與多平台擴展。">
+<title>PRX｜產品與整合指南</title>
+<style>
+:root {
+  --paper:#f6f5fb; --white:#fff; --ink:#242137; --muted:#5d5670; --rule:#dcd7e9;
+  --accent:#6045df; --link:#4930ba; --tint:#eeebff; --dark:#211944; --on-dark:#e0d9ff;
+  --font:"Segoe UI","Microsoft JhengHei","PingFang TC",sans-serif;
+}
+* { box-sizing:border-box }
+html { scroll-padding-top:1.75rem }
+body { margin:0; color:var(--ink); background:var(--paper); font:1rem/1.75 var(--font) }
+a { color:var(--link); text-underline-offset:.22em }
+:focus-visible { outline:3px solid var(--accent); outline-offset:4px }
+.frame { width:min(1200px, calc(100% - 64px)); margin-inline:auto }
+header { padding:1.55rem 0; color:var(--white); background:var(--dark) }
+header .frame { display:flex; justify-content:space-between; gap:1.25rem; align-items:center }
+header strong { font-size:1.25rem }
+header a { color:var(--on-dark) }
+header a:focus-visible { outline-color:var(--on-dark) }
+.skip { position:fixed; top:.7rem; left:.7rem; z-index:5; padding:.5rem 1rem; background:var(--white); transform:translateY(-180%) }
+.skip:focus { transform:none }
+.layout { display:grid; grid-template-columns:210px minmax(0,1fr); gap:3rem; align-items:start }
+.toc { position:sticky; top:1.5rem; margin-top:3rem; max-height:calc(100vh - 3rem); overflow:auto }
+.toc ul { list-style:none; padding:0; margin:0; border-block:1px solid var(--rule) }
+.toc a { display:block; padding:.28rem .65rem; color:var(--muted); text-decoration:none }
+.toc a:hover { color:var(--link); background:var(--tint) }
+.toc a:focus-visible { outline-offset:-3px }
+.toc .return { color:var(--link); text-decoration:underline; margin-bottom:.65rem }
+main { min-width:0; padding:2.7rem 0 }
+h1,h2,h3 { line-height:1.3; text-wrap:balance }
+h1 { font-size:clamp(2.45rem,4vw,3.5rem); letter-spacing:-.035em; margin:0 }
+h2 { font-size:2rem; letter-spacing:-.025em; margin:0 0 .65rem }
+h3 { margin:1.45rem 0 .45rem; font-size:1.2rem }
+p { margin:.55rem 0; max-width:55em }
+ul,ol { padding-left:1.5em }
+li + li { margin-top:.32rem }
+.lead { color:var(--muted); font-size:1.1rem; margin:.85rem 0 }
+.status { padding:.85rem 1rem; background:var(--tint); border-radius:6px }
+section { padding:2rem 0; border-bottom:1px solid var(--rule) }
+section:target h2 { color:var(--link) }
+.table { overflow-x:auto }
+table { border-collapse:collapse; width:100%; margin:.7rem 0; background:var(--white) }
+th,td { padding:.65rem .8rem; border-bottom:1px solid var(--rule); text-align:left; vertical-align:top }
+thead th { background:var(--tint) }
+tbody th { min-width:8em }
+code { font-size:.95em; overflow-wrap:anywhere }
+pre { padding:.8rem 1rem; overflow:auto; background:var(--white); border:1px solid var(--rule); border-radius:6px }
+pre code { overflow-wrap:normal }
+footer { padding:0 0 2rem; color:var(--muted); font-size:.9rem }
+</style>
+</head>
+<body>
+<a class="skip" href="#content">跳到正文</a>
+<header><div class="frame"><strong>PRX</strong><a href="./">返回互動簡報</a></div></header>
+<div class="frame layout">
+  <nav class="toc" aria-label="指南目錄">
+    <a class="return" href="./">回到簡報總覽</a>
+    <ul>
+      <li><a href="#research">需求與試點</a></li>
+      <li><a href="#business">商業模式</a></li>
+      <li><a href="#delivery">交付方式比較</a></li>
+      <li><a href="#ownership">資料與責任</a></li>
+      <li><a href="#ngss3">NGSS3 首接</a></li>
+      <li><a href="#sso">單一登入</a></li>
+      <li><a href="#deeplinks">NGSS3 深層連結</a></li>
+      <li><a href="#embed">限定嵌入</a></li>
+      <li><a href="#api">API 與事件</a></li>
+      <li><a href="#platforms">接入第二個平台</a></li>
+      <li><a href="#rollout">擴展與驗收門檻</a></li>
+      <li><a href="#demo">Demo 操作與限制</a></li>
+      <li><a href="#references">原始規格</a></li>
+    </ul>
+  </nav>
+  <main id="content" tabindex="-1">
+    <h1>產品與整合指南</h1>
+    <p class="lead">從 NGSS3 的第一筆唯讀查證，說明人員怎麼進入 PRX、資料在哪裡查，以及哪些做法能沿用到下一個平台。</p>
+    <p class="status"><strong>閱讀前先區分狀態。</strong> PRX 保有獨立產品方向，NGSS3 是第一個預期業務來源。以下登入、入口、嵌入、API 和計費為建議或待確認事項。現有 Demo 使用合成資料。</p>
+
+    <section id="research">
+      <h2>需求與試點怎麼驗證</h2>
+      <p>從一件近期實際案件回溯。玩家問提款進度，客服要找對交易，辨識來源進度，安排下一次更新。換班時主管還需要知道誰接手、何時該跟進。</p>
+      <ol>
+        <li>訪談客服、主管、營運和採購。記下目前在哪裡查、交班時缺什麼、誰負責改善與採購。收集現有流程已能順利處理的反例。</li>
+        <li>比較同類案件的處理時間、重開及承諾達成。先定義何時算解決、如何計入等待、取樣期間和分母。</li>
+        <li>用合成 Demo 觀察操作能否理解。真實試點另外確認授權、資料用途、資料保存、支援、事故與停止條件，再衡量成效。</li>
+      </ol>
+      <p><a href="./#need">回簡報的需求分析</a></p>
+    </section>
+
+    <section id="business">
+      <h2>商業模式與計費</h2>
+      <p>先和營運商驗證完整工作台的價值，再依導入成本和採購方式選擇直售、共同銷售、轉售或提供 API。三種方式共用產品核心，簽約、開票、開通、支援和事故處理分別約定。</p>
+      <ul>
+        <li><strong>訂閱與容量。</strong> 以工作區為基礎，包含約定席次或工作容量。可變成本較高的 AI 或訊息另定可核對用量。</li>
+        <li><strong>導入與合作。</strong> 導入、來源適配、支援、分潤和維運納入每工作區成本。OEM 可調整品牌呈現，案件存取仍依使用者授權。</li>
+        <li><strong>成果計價。</strong> 若日後測試 AI 成果計價，先定義解決、重開、人工接手、重複計費和爭議處理。取得使用與付費證據後才訂價格。</li>
+      </ul>
+      <p><a href="./#business">回簡報的商業模式</a></p>
+    </section>
+
+    <section id="delivery">
+      <h2>獨立工作台、跳轉、嵌入與 API</h2>
+      <div class="table"><table>
+        <thead><tr><th scope="col">方式</th><th scope="col">適用情境</th><th scope="col">畫面與責任</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">獨立工作台</th><td>客服整班使用 PRX，集中待辦、對話、證據、交班和承諾。</td><td>PRX 負責完整桌面介面與自身案件。人員可從 PRX 網址直接開始。</td></tr>
+          <tr><th scope="row">SSO 與深層連結</th><td>客服原本在 NGSS3 的會員或交易頁，要帶著該筆情境轉到 PRX。</td><td>NGSS3 提供入口，PRX 在頂層頁面重新驗權。工作台沿用同一套案件。</td></tr>
+          <tr><th scope="row">限定嵌入</th><td>營運人員在原後台只需快速看案件是否有人處理，或前往完整案件。</td><td>原後台提供容器，PRX 提供經授權的簡短摘要。完整查證與回覆仍由工作台處理。<br><a href="#embed">嵌入設計與失敗處理</a></td></tr>
+          <tr><th scope="row">API</th><td>營運商已有客服系統，只需要例如「查證一筆交易」的能力。</td><td>呼叫端自有畫面。雙方約定案件主檔、可查欄位、用途、錯誤和稽核。<br><a href="#api">API 與事件契約</a></td></tr>
+        </tbody>
+      </table></div>
+      <p>玩家從品牌網站進入時另建終端服務工作階段，只能看到授權的公開資訊。員工的 SSO 與玩家驗證各自處理。</p>
+      <p><a href="./#product">回簡報的產品與架構</a></p>
+    </section>
+
+    <section id="ownership">
+      <h2>資料由誰決定，出錯時找誰</h2>
+      <ul>
+        <li><strong>NGSS3 或其他業務來源。</strong> 決定會員、錢包、交易狀態與業務規則。PRX 記錄該次查證的來源、觀測時間、版本及授權依據。</li>
+        <li><strong>PRX。</strong> 決定自有案件的主責、協作、交班與承諾。若保留第三方客服主檔，兩邊事先指定單一案件主檔並約定回寫。</li>
+        <li><strong>訊息管道。</strong> 提供收件、目的地與投遞回執。訊息送達、交易到帳、案件解決是三個分開的結果。</li>
+        <li><strong>權限。</strong> 連線、環境、來源租戶和品牌共同界定資料範圍。集團管理、付款或轉售關係不會自動授予案件內容。搜尋、附件、快取與 AI 引用都依當下授權過濾。</li>
+      </ul>
+    </section>
+
+    <section id="ngss3">
+      <h2>NGSS3 首接怎麼起步</h2>
+      <p>選一個授權測試工作區、一名客服、一種提款狀態查詢。接入前由三方交付以下資料，未知項目列入取證清單。</p>
+      <div class="table"><table>
+        <thead><tr><th scope="col">責任方</th><th scope="col">先確認的項目</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">NGSS3</th><td>身分提供方與測試環境、員工識別與停權語義、租戶及品牌對應、唯讀欄位與狀態樣本、授權範圍、失敗、撤權與限流。</td></tr>
+          <tr><th scope="row">PRX</th><td>允許接入的連線、工作區成員與資源授權、最少查證證據、失效後的顯示與 AI 限制、稽核與故障回復。</td></tr>
+          <tr><th scope="row">營運商</th><td>案例與測試範圍、資料用途、參與人員、現行流程基準、支援窗口與停止條件。</td></tr>
+        </tbody>
+      </table></div>
+      <p>先驗「進對工作區 → 查對交易 → 記錄已知狀態 → 具名接手、回覆與續問」。再驗錯租戶、停權、撤權、逾時和晚到結果。來源失聯時標示未知或過期，仍可處理有權限的案件。</p>
+      <p><a href="#sso">單一登入</a>　<a href="#deeplinks">入口位置</a>　<a href="#rollout">驗收門檻</a>　<a href="./#ngss3">回簡報的 NGSS3 接入</a></p>
+    </section>
+
+    <section id="sso">
+      <h2>建議的單一登入方式</h2>
+      <p><strong>優先驗證 OIDC Authorization Code Flow 搭配 PKCE。</strong> 若 NGSS3 能提供可信且可維運的 OIDC 身分提供方，PRX 可先直接接入。若兩個系統已有共同的企業 IdP，可由雙方分別註冊應用程式。後續若需要接不同 OIDC 或 SAML IdP，再評估成熟的身分代理，統一交給 PRX 可驗證的登入結果。</p>
+      <ol>
+        <li>客服點 NGSS3 入口，進入 PRX 的頂層頁面。PRX 建立登入交易，向已登記的 IdP 發起授權請求，使用固定回呼、PKCE S256、<code>state</code> 與 <code>nonce</code>。</li>
+        <li>IdP 的工作階段有效且符合政策時，可沿用登入狀態。需要重新登入或 MFA 時，依 IdP 政策提示。</li>
+        <li>PRX 伺服器交換授權碼並驗證 ID Token，包含簽章、簽發者、受眾、效期與本次 nonce。以 <code>issuer</code> 和 <code>subject</code> 識別員工，email 僅用於聯絡或顯示。</li>
+        <li>PRX 核對工作區成員資格、品牌、資源、用途與動作，建立自己的工作階段。工作區成員設定或對應規則需經信任配置，登入結果本身只證明身分。</li>
+        <li>每次查詢或操作重新檢查對應權限。停權、離職和角色變更需有事件或定期重驗，事先約定生效上限。支援時可評估 Back-Channel Logout 結束工作階段，視帳號佈建需求再評估 SCIM。</li>
+      </ol>
+      <p>PRX 的工作階段由自身服務端管理，可用具 <code>Secure</code> 與 <code>HttpOnly</code> 的 Cookie，SameSite 及 CSRF 防護依實際登入和操作流程驗證。API 憑證與登入權杖留在可信服務端，深層連結只傳短效情境交換碼。若暫時沒有可驗證的企業 IdP，先使用 PRX 獨立登入並逐案驗權，等身分契約確認後再提供 SSO。</p>
+      <p>依據 <a href="https://openid.net/specs/openid-connect-core-1_0.html">OpenID Connect Core</a>、<a href="https://www.rfc-editor.org/rfc/rfc9700.html">OAuth 2.0 Security BCP</a>、<a href="https://openid.net/specs/openid-connect-backchannel-1_0.html">OpenID Connect Back-Channel Logout</a>、<a href="https://www.rfc-editor.org/rfc/rfc7644.html">SCIM 協定</a>。</p>
+    </section>
+
+    <section id="deeplinks">
+      <h2>NGSS3 哪裡可以連到 PRX</h2>
+      <p>以下為可與 NGSS3 責任方核對的候選位置。選單名稱、畫面是否存在、可用欄位與授權仍待確認。</p>
+      <div class="table"><table>
+        <thead><tr><th scope="col">NGSS3 候選位置</th><th scope="col">PRX 目的地</th><th scope="col">先驗什麼</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">後台主選單<br>「開啟 PRX 工作台」</th><td>到有權限的工作區及工作清單。建議先驗這個入口。</td><td>只帶工作區提示，PRX 重查成員資格。無對應時顯示可選工作區或拒絕。</td></tr>
+          <tr><th scope="row">會員詳情<br>「查看服務案件」</th><td>該會員的案件清單，或可讀的 Player 360 情境。</td><td>來源會員識別須加上連線及品牌範圍。驗跨品牌同名、無案件、不可查及撤權。</td></tr>
+          <tr><th scope="row">提款或交易詳情<br>「查詢這筆交易的服務案件」</th><td>已知有關聯時開正確案件。多筆時顯示有權限的結果供選擇，無關聯時顯示安全的空結果。</td><td>精確核對來源交易、會員與品牌。即使同一玩家也不能猜測是哪一筆，連結本身不建立案件或執行金流。</td></tr>
+          <tr><th scope="row">營運告警或協作待辦<br>「到 PRX 跟進」</th><td>定位既有案件及待查證項目。</td><td>等雙方有可驗證的關聯與資料用途再開放。重複點擊維持同一目標，過期可重新啟動。</td></tr>
+        </tbody>
+      </table></div>
+      <h3>連結打開之後的檢查順序</h3>
+      <ol>
+        <li>NGSS3 服務端先檢查操作人員對頁面和資源的權限，簽發可由 PRX 可信服務端兌換的短效、單次使用不透明交換碼。網址不含會員明細、交易明細或登入權杖。</li>
+        <li>PRX 將啟動情境綁定到本次登入。登入後驗證交換碼的發行方、受眾與效期，核對登入主體、連線、來源租戶、品牌、資源、用途和允許的目的地。通過後一次性兌換，避免重放。</li>
+        <li>驗證通過後導向 PRX 的固定目的頁，從網址清除交換碼。啟動頁禁止快取和傳出來源網址，存取紀錄遮蔽交換碼，稽核只記錄必要資訊。過期或已使用時可回原頁重新啟動。錯租戶或無權限時拒絕並提供可安全執行的下一步。</li>
+      </ol>
+      <p>示意網址 <code>https://prx.example/launch?code=opaque-example</code>。目的頁由伺服器依固定入口類型決定，避免任意轉址。實際路徑、交換時限及錯誤契約待雙方驗證。</p>
+    </section>
+
+    <section id="embed">
+      <h2>限定嵌入怎麼用</h2>
+      <p>例如在 NGSS3 會員頁放一個案件側欄，只顯示經授權的案件狀態、主責與「前往 PRX」入口。要查詳細交易、對客回覆或交班時，開啟完整工作台。</p>
+      <ul>
+        <li>若採跨來源 iframe，PRX 用 CSP <code>frame-ancestors</code> 只允許核准的宿主來源。視需要縮限 iframe 權能。</li>
+        <li>雙方若使用 <code>postMessage</code>，發送指定精確目的來源，接收驗 <code>event.origin</code>、<code>event.source</code>、訊息結構和本次請求關聯。畫面收到的 ID 仍需服務端獨立驗權。</li>
+        <li>以限定用途和資源的工作階段啟動面板。驗證跨站儲存受限、過期、撤權與來源不相符，並保留頂層開啟的備援。</li>
+      </ul>
+      <p>依據 <a href="https://www.w3.org/TR/CSP3/#directive-frame-ancestors">CSP frame-ancestors</a> 與 <a href="https://html.spec.whatwg.org/multipage/web-messaging.html#crossDocumentMessages">HTML 跨文件訊息規格</a>。</p>
+    </section>
+
+    <section id="api">
+      <h2>限定能力 API 與事件契約</h2>
+      <p>例如既有客服系統收到提款詢問，向 PRX 請求一筆經授權的查證摘要。原系統繼續處理案件；PRX 記錄查證依據與稽核。NGSS3 提供給 PRX 的來源查詢介面，與 PRX 對外提供的查證能力，分開談契約與授權。</p>
+      <ul>
+        <li><strong>呼叫範圍。</strong> 服務端對服務端驗證，逐連線限定租戶、品牌、操作和用途。若代表員工查詢，保留可驗證的操作者與授權。系統身分本身不擴張資料權限。</li>
+        <li><strong>請求與回應。</strong> 指定資源參照、用途、契約版本與請求 ID。回應提供可讀的最小狀態、來源、資料時間與可追蹤引用。清楚區分已知、未知、過期、無權限與不支援。</li>
+        <li><strong>重送與事件。</strong> Webhook 驗證簽章及時效，按連線及事件識別去重。用可驗證的版本處理亂序，有落差時對帳。對有副作用的操作約定冪等鍵與結果查詢，逾時後先查結果再決定是否重試。</li>
+        <li><strong>維運。</strong> 約定限流、重試、逾時、撤權、憑證輪替、版本相容期、稽核與故障處理。用 OpenAPI 定義並審閱正式契約。</li>
+      </ul>
+      <p>參考 <a href="https://spec.openapis.org/oas/">OpenAPI Specification</a> 與 <a href="https://www.rfc-editor.org/rfc/rfc9700.html">OAuth 2.0 Security BCP</a>。</p>
+    </section>
+
+    <section id="platforms">
+      <h2>怎麼接第二個平台</h2>
+      <p>共用工作區授權、案件、查證呈現、深層連結交換及稽核。每個來源各自適配身分、外部識別、狀態、事件、限流和撤權。訊息管道另做連線，讓 Telegram Bot 或其他入口不必跟著業務來源一併更換。</p>
+      <div class="table"><table>
+        <thead><tr><th scope="col">差異</th><th scope="col">接入時怎麼處理</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">不同企業登入</th><td>每個 IdP 各自登記可信簽發者、回呼及身分對應。將回呼驗證綁定本次預期簽發者，避免混用不同 IdP 的回應。PRX 保持同一套工作區與資源授權。</td></tr>
+          <tr><th scope="row">外部 ID 撞名</th><td>以連線、環境、來源租戶與品牌界定外部 ID 範圍。可驗證的對應成立後才連到既有案件。</td></tr>
+          <tr><th scope="row">交易狀態不同</th><td>保留原始狀態語義、時間與版本，再映射到 PRX 的顯示層。無法對應就標記未知或不支援。</td></tr>
+          <tr><th scope="row">事件能力不同</th><td>同時評估事件和輪詢。根據能取得的證據區分即時、延遲和未知，並驗證撤權是否能在約定時間內生效。</td></tr>
+        </tbody>
+      </table></div>
+      <p>選一個和 NGSS3 差異明顯的來源重跑相同案件路線，比較共用流程比例、額外適配成本與失敗處理。用結果決定是否擴大投入。</p>
+    </section>
+
+    <section id="rollout">
+      <h2>擴展與驗收門檻</h2>
+      <ol>
+        <li>先核對資料責任、登入和一個工作區。有效員工進入正確工作區，停權、過期、錯品牌、重放及竄改均拒絕。</li>
+        <li>完成一個唯讀案件流程。來源離線、失效及撤權時看不到受限明細，晚到結果不應寫到另一個案件。案件主責與可採取的下一步仍清楚。</li>
+        <li>驗事件重送、亂序、對帳、連線停用與回復。未知投遞或來源結果有查證及人工跟進方式。</li>
+        <li>取得第二來源與限定嵌入的證據後，再看付費、適配成本、支援與續約，決定開放合作通路或 API 的順序。</li>
+      </ol>
+      <p>Bot 自助與真人轉接、品牌外觀和受眾旅程可按各自需求、授權與成本另行驗證。上述是投入門檻，時程需另定。</p>
+      <p><a href="./#future">回簡報的擴展條件</a></p>
+    </section>
+
+    <section id="demo">
+      <h2>現有 Demo 怎麼走查</h2>
+      <ol>
+        <li>進入 IN101，以客服 1 開啟「客服中心」，從「待接入」打開林小嶼的提款案。</li>
+        <li>接手後從「我的工作」追蹤。看待回覆、等候原因與服務時計，再切案確認草稿各自保留。</li>
+        <li>到 Player 360 比較來源狀態與資料時間。試公開回覆、內部備註及交班，分辨對客內容、主責和承諾。</li>
+        <li>在合成客戶端比較「仍未解決」續原案與「已解決」進入評價。需要看例外時可開啟 Demo 工具與新人演練。</li>
+      </ol>
+      <p>展示中的角色、案件、來源、AI 和發送都是合成。可用來討論操作理解與例外呈現，正式登入、跨平台接入、真人服務成效和投遞需另行驗證。</p>
+      <p><a href="../#/demo">開啟合成 Demo</a>　<a href="./#demo">回簡報的 Demo 章</a></p>
+    </section>
+
+    <section id="references">
+      <h2>原始規格</h2>
+      <ul>
+        <li><a href="https://openid.net/specs/openid-connect-core-1_0.html">OpenID Connect Core</a> 與 <a href="https://www.rfc-editor.org/rfc/rfc9700.html">OAuth 2.0 Security BCP</a></li>
+        <li><a href="https://openid.net/specs/openid-connect-backchannel-1_0.html">OpenID Connect Back-Channel Logout</a> 與 <a href="https://www.rfc-editor.org/rfc/rfc7644.html">SCIM 協定</a></li>
+        <li><a href="https://www.w3.org/TR/CSP3/#directive-frame-ancestors">CSP frame-ancestors</a> 與 <a href="https://html.spec.whatwg.org/multipage/web-messaging.html#crossDocumentMessages">HTML 跨文件訊息</a></li>
+        <li><a href="https://spec.openapis.org/oas/">OpenAPI Specification</a></li>
+      </ul>
+    </section>
+  </main>
+</div>
+<footer class="frame">PRX 產品設計與體驗 Demo　2026 年 11 月 3 日</footer>
+</body>
+</html>
