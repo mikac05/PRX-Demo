@@ -1,52 +1,209 @@
 <!doctype html>
-<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="PRX 客服系統圖解簡報：案件、來源、協作與服務閉環。"><title>PRX — 策略與 Mission Control</title>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PRX｜產品策略、NGSS3 首接與 Mission Control</title>
+<meta name="description" content="探索 PRX 的產品與商業策略、NGSS3 首接提案，以及 Mission Control 的完整客服流程。">
 <style>
-:root{--paper:#f6f5fb;--ink:#242137;--muted:#625d75;--accent:#6045df;--tint:#eeebff;--rule:#dbd8e7;color-scheme:light}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Segoe UI","Microsoft JhengHei",sans-serif;font-size:16px}::selection{background:#d7d0ff;color:#242137}button,a,summary{-webkit-tap-highlight-color:transparent}a{color:#4930ba;text-underline-offset:4px}button{font:inherit;cursor:pointer;color:inherit}button:disabled{opacity:.35;cursor:default}button:focus-visible,a:focus-visible,summary:focus-visible,.diagram:focus-visible{outline:3px solid var(--accent);outline-offset:4px}header{height:88px;padding:0 4vw;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--rule);gap:16px}.brand{display:flex;align-items:center;gap:16px}.wordmark{font-size:30px;font-weight:750;letter-spacing:-1.3px}.brand-label{border-left:1px solid var(--rule);padding-left:16px;color:var(--muted);font-size:14px}.top-actions{display:flex;gap:8px}.top-actions button,.nav-button{border:1px solid var(--rule);background:transparent;padding:9px 14px;border-radius:6px}.top-actions button:hover,.nav-button:hover{background:var(--tint)}.slide{max-width:1700px;margin:auto;min-height:calc(100svh - 172px);padding:7vh 4vw 3vh;display:grid;grid-template-columns:minmax(280px,.85fr) minmax(0,1.55fr);align-items:center;gap:32px}.intro{align-self:center}.intro h1,.intro h2{font-size:clamp(36px,4vw,64px);font-weight:650;line-height:1.24;letter-spacing:-.035em;margin:0;text-wrap:balance}.intro h1{font-size:clamp(40px,4.35vw,70px)}.hero h1{color:var(--accent)}.lead{font-size:clamp(17px,1.45vw,22px);line-height:1.8;color:var(--muted);margin:28px 0 0;max-width:26ch}.visual{min-width:0;width:100%}.diagram{margin:0;width:100%;overflow-x:auto;scrollbar-color:#beb4e7 transparent;scrollbar-width:thin}.diagram svg{display:block;width:100%;min-width:960px;font-family:"Segoe UI","Microsoft JhengHei",sans-serif}.diagram svg{width:960px}.swipe{display:none}.takeaway{grid-column:1/-1;border-top:1px solid var(--rule);padding-top:24px;font-size:clamp(16px,1.6vw,22px);color:var(--muted);align-self:end;display:flex;align-items:center;gap:14px}.takeaway:before{content:"";width:24px;height:2px;background:var(--accent);flex:none}.comparison{width:100%;font-size:19px}.comparison>div{display:grid;grid-template-columns:160px 1fr;gap:20px;padding:25px 20px;border-bottom:1px solid var(--rule);line-height:1.6}.comparison .compare-head{font-size:14px;color:var(--muted);padding-top:10px}.comparison .focal-row{background:var(--tint);color:#4930ba}.caption{font-size:13px;color:var(--muted);line-height:1.8}.deck-footer{height:84px;padding:0 4vw;display:flex;align-items:center;justify-content:space-between;gap:16px}.deck-footer .status{font-size:12px;color:var(--muted)}.page-controls{display:flex;gap:12px;align-items:center}.page-count{font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums;min-width:60px;text-align:center}.nav-button{width:44px;height:42px;padding:0;display:grid;place-items:center}.nav-button svg{width:18px;height:18px}.dots{display:flex;gap:6px}.dots button{width:24px;height:28px;border:0;background:transparent;position:relative;padding:0}.dots button:after{content:"";position:absolute;left:4px;right:4px;top:12px;height:3px;background:#c4bfd6;border-radius:3px}.dots button[aria-current=true]:after{background:var(--accent);height:4px}.script-ready .slide{display:none}.script-ready .slide.active{display:grid}.notes{margin:0 4vw 32px;padding:24px;border:1px solid var(--rule);border-radius:8px;background:white}.notes h2{font-size:20px;margin:0 0 12px}.notes p,.notes li{color:var(--muted);line-height:1.8}.notes ol{margin-bottom:0}.notes-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}.overview .slide{display:grid;min-height:720px;border-bottom:1px solid var(--rule)}.overview .deck-footer{position:sticky;bottom:0;background:var(--paper);border-top:1px solid var(--rule)}.overview .dots{display:none}.top-actions button[aria-pressed=true]{background:var(--tint);color:#4930ba}.progress{height:3px;background:var(--rule)}.progress span{height:100%;background:var(--accent);display:block;width:9.09%;transition:width .2s}body:fullscreen{overflow:auto}
-@media(min-width:1500px){.diagram svg{width:100%;min-width:960px}}@media(max-width:1100px){.slide{grid-template-columns:1fr;gap:20px;padding-top:40px}.intro{display:flex;gap:30px;align-items:flex-end;justify-content:space-between}.intro h1,.intro h2{font-size:44px}.lead{font-size:17px;margin:0;max-width:28ch}.diagram svg{width:960px}.slide{min-height:calc(100svh - 172px)}.swipe{display:block;font-size:12px;color:var(--muted);padding:10px 0}.takeaway{padding-top:16px}.notes-grid{gap:24px}}@media(max-width:600px){header{height:72px;padding:0 20px}.brand-label{display:none}.wordmark{font-size:26px}.top-actions button{padding:8px 10px;font-size:12px}.slide{padding:36px 20px 20px;gap:26px;min-height:calc(100svh - 156px)}.intro{display:block}.intro h1,.intro h2{font-size:36px;letter-spacing:-.03em}.lead{font-size:16px;margin-top:18px;max-width:28ch}.takeaway{font-size:15px;line-height:1.7}.diagram{border-top:1px solid var(--rule);padding-top:12px}.deck-footer{padding:0 20px;height:84px}.dots{display:none}.deck-footer .status{max-width:150px;font-size:11px;line-height:1.6}.comparison{font-size:15px}.comparison>div{grid-template-columns:100px 1fr;padding:17px 8px;gap:10px}.notes{margin:0 20px 24px;padding:20px}.notes-grid{grid-template-columns:1fr;gap:16px}.overview .slide{min-height:0;padding-bottom:40px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.progress span{transition:none}}@media print{@page{size:landscape;margin:10mm}header,.deck-footer,.progress,.notes,.script-ready .slide,.overview .slide{display:grid!important;grid-template-columns:1fr;min-height:0;height:175mm;break-after:page;padding:8mm;gap:8mm;page-break-inside:avoid}.intro{display:flex;justify-content:space-between;align-items:center}.intro h1,.intro h2{font-size:30px}.lead{font-size:15px;margin:0}.diagram{overflow:visible}.diagram svg{width:100%;min-width:0;max-height:95mm}.swipe{display:none}.takeaway{font-size:16px;padding-top:8px}.comparison>div{padding:15px}.caption{font-size:11px}}
-
-.demo-link{display:inline-flex;align-items:center;padding:9px 14px;border:1px solid var(--accent);border-radius:6px;text-decoration:none;background:var(--accent);color:white;font-size:14px}.demo-link:hover{background:#4930ba}@media(max-width:600px){.top-actions{gap:5px}.demo-link{font-size:12px;padding:8px}.top-actions button{padding:8px}.brand{gap:0}}
-/* Project-branded responsive diagrams: preserve readable labels at desktop sizes;
-   narrow screens use equivalent stacked diagrams rather than shrunken text. */
-.diagram svg{width:100%;min-width:0}.intro h1{font-size:clamp(40px,3.7vw,64px)}.mobile-map{display:none}
-@media(max-width:600px){.diagram{display:none}.intro h1{font-size:36px}.mobile-map{display:grid;gap:12px}.mobile-map>div{padding:18px 20px;border:1px solid var(--rule);border-radius:8px;position:relative}.mobile-map>div+div:before{content:"";position:absolute;top:-13px;left:30px;height:12px;width:1px;background:#625d75}.mobile-map>div:nth-child(2){background:var(--tint);border-color:#b5a8ed}.mobile-map strong{display:block;font-size:20px;font-weight:600;margin-bottom:6px}.mobile-map span{font-size:15px;color:var(--muted);line-height:1.6}.takeaway{padding-top:18px}.slide{min-height:calc(100svh - 156px)}}
-#slide-2 .mobile-map>div+div:before,#slide-3 .mobile-map>div+div:before,#slide-9 .mobile-map>div+div:before{display:none}
-#slide-11 .mobile-map>div:last-child:before{display:none}
-@media print{.mobile-map{display:none!important}.diagram{display:block!important}.diagram svg{width:100%;min-width:0}}
-
-.chapter{color:var(--accent);font-size:.9rem;font-weight:700;letter-spacing:.08em;margin:0 0 16px}.intro{display:block}.lead{margin-top:20px}.diagram-layout{display:grid;gap:10px;margin:0;padding:0;list-style:none}.diagram-layout li{display:grid;align-content:center;gap:7px;padding:clamp(13px,2vw,26px);background:white;border:1px solid var(--rule);border-radius:9px;position:relative;min-width:0}.diagram-layout strong{font-size:clamp(16px,1.9vw,27px);line-height:1.3}.diagram-layout small{color:var(--muted);font-size:clamp(13px,1.15vw,17px);line-height:1.5}.diagram-layout .focus{background:var(--tint);border-color:var(--accent)}.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.grid li{min-height:136px}.flow{counter-reset:node;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.flow li::before{counter-increment:node;content:'0' counter(node);font-variant-numeric:tabular-nums;color:var(--accent);font-size:13px;font-weight:700}.stack li{text-align:center;min-height:80px}.stack li+li::before{content:'';position:absolute;top:-11px;left:50%;height:10px;border-left:1px solid var(--accent)}.dots{gap:2px}.dots button{width:21px}.notes{scroll-margin:20px}@media(max-width:760px){.dots{display:none}.grid li{min-height:94px}}@media(max-width:460px){.grid{grid-template-columns:1fr}.grid li{min-height:0}.flow li{min-height:68px}.top-actions button,.demo-link{padding:7px 6px}}@media print{header,.deck-footer,.progress,.notes{display:none!important}.script-ready .slide{display:grid!important}}
-</style></head><body>
-<header><div class="brand"><span class="wordmark">PRX<span style="color:var(--accent)">.</span></span><span class="brand-label">策略與 Mission Control</span></div><div class="top-actions"><a class="demo-link" href="https://mikac05.github.io/PRX-Demo/#/demo" target="_blank" rel="noopener noreferrer">開啟 Demo</a><button id="overview" aria-pressed="false">總覽</button><button id="notes-button" aria-expanded="false" aria-controls="speaker-notes">講者備忘</button><button id="fullscreen">全螢幕</button></div></header>
-<main id="deck">
-<section class="slide hero" id="slide-1" aria-labelledby="heading-1"><div class="intro"><p class="chapter">方向</p><h1 id="heading-1">PRX 讓問題有主責、有證據</h1><p class="lead">從玩家服務切入，逐步連接營運系統。</p></div><div class="visual"><ol class="diagram-layout flow" aria-label="PRX 讓問題有主責、有證據圖解"><li class="node"><strong>接住問題</strong></li><li class="focus"><strong>查證來源</strong></li><li class="node"><strong>協作處理</strong></li><li class="node"><strong>追蹤結果</strong></li></ol></div></section>
-<section class="slide" id="slide-2" aria-labelledby="heading-2"><div class="intro"><p class="chapter">策略假說</p><h2 id="heading-2">先驗證案件解決</h2><p class="lead">以玩家問題、來源證據與交班作為第一個可驗證場景。</p></div><div class="visual"><ul class="diagram-layout grid" aria-label="先驗證案件解決圖解"><li class="node"><strong>客服</strong><small>知道本案與下一步</small></li><li class="focus"><strong>主管</strong><small>看見主責與到期</small></li><li class="node"><strong>營運商</strong><small>比較處理成本與品質</small></li></ul></div></section>
-<section class="slide" id="slide-3" aria-labelledby="heading-3"><div class="intro"><p class="chapter">商業假說</p><h2 id="heading-3">一個產品，三條銷售路線</h2><p class="lead">候選計費為基礎訂閱、工作容量與透明用量。</p></div><div class="visual"><ul class="diagram-layout grid" aria-label="一個產品，三條銷售路線圖解"><li class="node"><strong>Direct</strong><small>營運商訂閱工作台</small></li><li class="focus"><strong>Partner</strong><small>包網商轉售或共銷</small></li><li class="node"><strong>Resolution API</strong><small>提供選定能力</small></li></ul></div></section>
-<section class="slide" id="slide-4" aria-labelledby="heading-4"><div class="intro"><p class="chapter">接入候選</p><h2 id="heading-4">同一核心，多個入口</h2><p class="lead">獨立 Web 工作台優先。情境嵌入與能力介面逐步開放。</p></div><div class="visual"><ul class="diagram-layout stack" aria-label="同一核心，多個入口圖解"><li class="node"><strong>工作台・安全啟動・限定嵌入・API</strong></li><li class="focus"><strong>PRX 案件、協作與授權</strong></li><li class="node"><strong>業務來源 Connector・通道 Connector</strong></li></ul></div></section>
-<section class="slide" id="slide-5" aria-labelledby="heading-5"><div class="intro"><p class="chapter">NGSS3 首接候選</p><h2 id="heading-5">先把責任與權限對齊</h2><p class="lead">NGSS3 是第一預期來源。合作能力與範圍待取證。</p></div><div class="visual"><ul class="diagram-layout grid" aria-label="先把責任與權限對齊圖解"><li class="node"><strong>NGSS3</strong><small>身份、資源範圍、來源語義</small></li><li class="focus"><strong>PRX</strong><small>工作區授權、案件、稽核</small></li><li class="node"><strong>共同驗收</strong><small>錯租戶、停權、失聯</small></li></ul></div></section>
-<section class="slide" id="slide-6" aria-labelledby="heading-6"><div class="intro"><p class="chapter">候選驗收路線</p><h2 id="heading-6">逐步證明接得起來</h2><p class="lead">每一步依證據決定是否前進。</p></div><div class="visual"><ol class="diagram-layout flow" aria-label="逐步證明接得起來圖解"><li class="node"><strong>取證盤點</strong></li><li class="focus"><strong>身份與工作區</strong></li><li class="node"><strong>唯讀案件閉環</strong></li><li class="node"><strong>事件與停用</strong></li><li class="node"><strong>嵌入、第二來源</strong></li><li class="node"><strong>商業複製</strong></li></ol></div></section>
-<section class="slide" id="slide-7" aria-labelledby="heading-7"><div class="intro"><p class="chapter">Mission Control · 合成 Demo</p><h2 id="heading-7">從「我的工作」開始</h2><p class="lead">把回覆義務、到期與等待集中到案件列。</p></div><div class="visual"><ul class="diagram-layout grid" aria-label="從「我的工作」開始圖解"><li class="node"><strong>需我處理</strong><small>我的待處理項目</small></li><li class="focus"><strong>即將到期</strong><small>15 分鐘內的有效時計</small></li><li class="node"><strong>等待外部／同事</strong><small>看清等待原因</small></li></ul></div></section>
-<section class="slide" id="slide-8" aria-labelledby="heading-8"><div class="intro"><p class="chapter">Mission Control · 合成 Demo</p><h2 id="heading-8">切回案件就能續辦</h2><p class="lead">保留篩選、位置、焦點與各案草稿。</p></div><div class="visual"><ol class="diagram-layout flow" aria-label="切回案件就能續辦圖解"><li class="node"><strong>案件 A</strong></li><li class="focus"><strong>案件 B</strong></li><li class="node"><strong>案件 C</strong></li><li class="node"><strong>回到 A</strong></li></ol></div></section>
-<section class="slide" id="slide-9" aria-labelledby="heading-9"><div class="intro"><p class="chapter">Mission Control · 合成 Demo</p><h2 id="heading-9">來源證據跟著本案</h2><p class="lead">Player 360 顯示當前授權、來源新鮮度與保護狀態。</p></div><div class="visual"><ul class="diagram-layout grid" aria-label="來源證據跟著本案圖解"><li class="node"><strong>已知</strong><small>可引用對應來源</small></li><li class="focus"><strong>過期／失聯</strong><small>標明不可查驗</small></li><li class="node"><strong>受限</strong><small>遮罩或請人查證</small></li></ul></div></section>
-<section class="slide" id="slide-10" aria-labelledby="heading-10"><div class="intro"><p class="chapter">Mission Control · 合成 Demo</p><h2 id="heading-10">交接後，工作仍有人負責</h2><p class="lead">從查證到交班，保留誰在處理與下一次承諾。</p></div><div class="visual"><ol class="diagram-layout flow" aria-label="交接後，工作仍有人負責圖解"><li class="node"><strong>目前主責</strong></li><li class="focus"><strong>請人查證</strong></li><li class="node"><strong>交班待接受</strong></li><li class="node"><strong>新主責接手</strong></li></ol></div></section>
-<section class="slide" id="slide-11" aria-labelledby="heading-11"><div class="intro"><p class="chapter">Mission Control · 合成 Demo</p><h2 id="heading-11">時計對應服務義務</h2><p class="lead">24/7 服務日曆。等待原因和暫停依實際規則判定。</p></div><div class="visual"><ul class="diagram-layout grid" aria-label="時計對應服務義務圖解"><li class="node"><strong>15 分鐘</strong><small>首次有效回覆</small></li><li class="focus"><strong>30 分鐘</strong><small>後續回覆</small></li><li class="node"><strong>4 小時</strong><small>解決時限</small></li></ul></div></section>
-<section class="slide" id="slide-12" aria-labelledby="heading-12"><div class="intro"><p class="chapter">Mission Control · 合成 Demo</p><h2 id="heading-12">捷徑、巨集與 AI 都保留人審</h2><p class="lead">鍵盤導航、草稿預覽和知識引用在同一工作脈絡。</p></div><div class="visual"><ul class="diagram-layout grid" aria-label="捷徑、巨集與 AI 都保留人審圖解"><li class="node"><strong>⌘／Ctrl + K</strong><small>找案件、知識、操作</small></li><li class="focus"><strong>巨集</strong><small>先檢查變數與收件目標</small></li><li class="node"><strong>AI 建議</strong><small>確認引用後採用</small></li></ul></div></section>
-<section class="slide" id="slide-13" aria-labelledby="heading-13"><div class="intro"><p class="chapter">Mission Control · 合成 Demo</p><h2 id="heading-13">保護狀態改變可用操作</h2><p class="lead">可先閱讀固定保護回覆，公開與內部收件目標清楚可見。</p></div><div class="visual"><ol class="diagram-layout flow" aria-label="保護狀態改變可用操作圖解"><li class="node"><strong>自我排除確認</strong></li><li class="focus"><strong>保留原稿</strong></li><li class="node"><strong>攔截一般發送</strong></li><li class="node"><strong>審閱保護回覆</strong></li></ol></div></section>
-<section class="slide" id="slide-14" aria-labelledby="heading-14"><div class="intro"><p class="chapter">Mission Control · 合成 Demo</p><h2 id="heading-14">讓客戶確認問題是否解決</h2><p class="lead">未解決可續原案，已解決再進入評價。</p></div><div class="visual"><ul class="diagram-layout grid" aria-label="讓客戶確認問題是否解決圖解"><li class="node"><strong>仍未解決</strong><small>續原案，保留進度</small></li><li class="focus"><strong>已解決</strong><small>進入 1–5 星評價</small></li><li class="node"><strong>另一個問題</strong><small>建立新案</small></li></ul></div></section>
-<section class="slide" id="slide-15" aria-labelledby="heading-15"><div class="intro"><p class="chapter">示範與驗證</p><h2 id="heading-15">用同一案走完一輪</h2><p class="lead">合成情境可重播。真人工作品質與正式接入待取證。</p></div><div class="visual"><ol class="diagram-layout flow" aria-label="用同一案走完一輪圖解"><li class="node"><strong>清單接案</strong></li><li class="focus"><strong>查證與交班</strong></li><li class="node"><strong>回覆與承諾</strong></li><li class="node"><strong>客戶確認</strong></li></ol></div></section>
-<section class="slide" id="slide-16" aria-labelledby="heading-16"><div class="intro"><p class="chapter">下一個產品決策</p><h2 id="heading-16">帶著一個問題去取證</h2><p class="lead">先找一種值得改善的案件，以及願意採購的人。</p></div><div class="visual"><ul class="diagram-layout grid" aria-label="帶著一個問題去取證圖解"><li class="node"><strong>營運商</strong><small>案例、現行成本、買方</small></li><li class="focus"><strong>NGSS3</strong><small>身份、唯讀能力、撤權</small></li><li class="node"><strong>PRX</strong><small>可比較的流程與驗收</small></li></ul></div></section>
+:root{color-scheme:light;--paper:#f6f5fb;--ink:#242137;--muted:#625d75;--accent:#5338cb;--tint:#eeebff;--rule:#dad6e8;--white:#fff;font-family:system-ui,"Microsoft JhengHei",sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);line-height:1.6}body:has(dialog[open]){overflow:hidden}::selection{background:#d9cfff;color:var(--ink)}:focus-visible{outline:3px solid var(--accent);outline-offset:4px}a{color:var(--accent);text-underline-offset:.2em}button{font:inherit;color:inherit;cursor:pointer}button:disabled{opacity:.5;cursor:default}.wrap{width:min(1120px,calc(100% - 48px));margin-inline:auto}.bar{border-bottom:1px solid var(--rule)}.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:68px}.wordmark{font-size:1.65rem;letter-spacing:-.035em;font-weight:800;text-decoration:none;color:var(--ink)}.wordmark span{color:var(--accent)}.link-button,.control{border:1px solid var(--rule);border-radius:8px;background:var(--white);text-decoration:none;padding:8px 13px;display:inline-flex;align-items:center;justify-content:center;min-height:42px}.link-button{background:var(--accent);color:white;border-color:var(--accent);font-weight:650}.control:hover:not(:disabled){background:var(--tint)}.hero{padding-block:clamp(46px,8vw,92px) 42px;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:clamp(24px,6vw,80px);align-items:center}h1,h2,h3,p{margin:0}h1{font-size:clamp(2.45rem,5vw,4.4rem);line-height:1.13;letter-spacing:-.035em;text-wrap:balance}h1 span{display:block;color:var(--accent)}.hero p{margin-top:20px;max-width:42ch;color:var(--muted);font-size:1.075rem}.map{list-style:none;padding:0;margin:0;border-top:1px solid var(--rule)}.map a{display:grid;grid-template-columns:2ch 1fr auto;align-items:center;gap:14px;min-height:58px;border-bottom:1px solid var(--rule);text-decoration:none;font-weight:700;color:var(--ink)}.map a:hover{color:var(--accent)}.map b,.number{font-size:.83rem;color:var(--accent);font-variant-numeric:tabular-nums}.icon{width:20px;height:20px;flex:none}.reader{border-top:1px solid var(--rule)}.chapter{display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);gap:clamp(24px,6vw,80px);padding-block:42px;scroll-margin-top:24px;border-bottom:1px solid var(--rule)}.chapter h2{font-size:clamp(1.55rem,3vw,2.3rem);line-height:1.25;letter-spacing:-.025em;text-wrap:balance}.chapter p{margin-top:10px;color:var(--muted);max-width:34ch}.topics{padding:0;margin:0;list-style:none}.topic{display:grid;width:100%;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;text-align:left;border:0;border-bottom:1px solid var(--rule);background:transparent;padding:12px 6px;min-height:64px}.topics li:first-child .topic{border-top:1px solid var(--rule)}.topic:hover,.topic:focus-visible{background:var(--tint)}.topic strong{display:block;font-size:1.03rem}.topic small{display:block;color:var(--muted);font-size:.88rem}.topic .icon{color:var(--accent)}.number{width:2.1ch}.footer{padding-block:24px 38px;color:var(--muted);font-size:.9rem}
+dialog{padding:0;border:1px solid var(--rule);border-radius:16px;background:var(--white);color:var(--ink);width:min(740px,calc(100% - 32px));max-height:min(880px,calc(100dvh - 48px));overflow:hidden}dialog::backdrop{background:#21183f80}.dialog-layout{display:grid;grid-template-rows:auto minmax(0,1fr) auto;max-height:min(878px,calc(100dvh - 50px))}.dialog-head,.dialog-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px clamp(16px,4vw,32px);background:var(--paper)}.dialog-head{border-bottom:1px solid var(--rule)}.dialog-foot{border-top:1px solid var(--rule)}.dialog-head span,.dialog-foot span{color:var(--muted);font-size:.88rem}.detail{overflow:auto;overscroll-behavior:contain;padding:24px clamp(16px,4vw,32px) 32px;scrollbar-color:#b9aee7 transparent}.detail h2{font-size:clamp(1.55rem,4vw,2.2rem);line-height:1.25;letter-spacing:-.025em}.detail h3{margin-top:24px;font-size:1.04rem}.detail p{margin-top:8px;max-width:68ch}.detail .summary{color:var(--accent);font-weight:650;margin-top:12px}.skip{position:absolute;left:12px;top:8px;transform:translateY(-150%);background:var(--white);padding:8px;z-index:1}.skip:focus{transform:none}
+@media(max-width:660px){.wrap{width:calc(100% - 32px)}.hero,.chapter{grid-template-columns:1fr}.hero{padding-top:42px;gap:26px}.chapter{gap:18px;padding-block:30px}.chapter p{max-width:none}.dialog-head,.dialog-foot{padding-block:10px}}
+</style>
+</head>
+<body>
+<a class="skip" href="#reader">跳至內容</a>
+<header class="bar"><div class="wrap"><a href="#top" class="wordmark" aria-label="PRX 回到開頭">PRX<span>.</span></a><a class="link-button" href="../#/demo">開啟合成 Demo</a></div></header>
+<main id="top">
+<div class="wrap hero">
+<div><h1>PRX 的產品策略<span>與 NGSS3 首接</span></h1><p>從一筆玩家問題看 PRX 為誰解決什麼、怎麼收費、第一個來源如何接入。選擇章節，再點開各主題閱讀案例與驗收條件。</p></div>
+<nav aria-label="章節"><ol class="map" id="chapters"></ol></nav>
+</div>
+<div class="wrap reader" id="reader"></div>
 </main>
-<footer class="deck-footer"><span class="status">合成原型 · 2026.11.03<br>方向鍵切換 · N 開啟備忘</span><nav class="dots" aria-label="簡報頁面"><button aria-label="第 1 頁：PRX 讓問題有主責、有證據" title="PRX 讓問題有主責、有證據"></button><button aria-label="第 2 頁：先驗證案件解決" title="先驗證案件解決"></button><button aria-label="第 3 頁：一個產品，三條銷售路線" title="一個產品，三條銷售路線"></button><button aria-label="第 4 頁：同一核心，多個入口" title="同一核心，多個入口"></button><button aria-label="第 5 頁：先把責任與權限對齊" title="先把責任與權限對齊"></button><button aria-label="第 6 頁：逐步證明接得起來" title="逐步證明接得起來"></button><button aria-label="第 7 頁：從「我的工作」開始" title="從「我的工作」開始"></button><button aria-label="第 8 頁：切回案件就能續辦" title="切回案件就能續辦"></button><button aria-label="第 9 頁：來源證據跟著本案" title="來源證據跟著本案"></button><button aria-label="第 10 頁：交接後，工作仍有人負責" title="交接後，工作仍有人負責"></button><button aria-label="第 11 頁：時計對應服務義務" title="時計對應服務義務"></button><button aria-label="第 12 頁：捷徑、巨集與 AI 都保留人審" title="捷徑、巨集與 AI 都保留人審"></button><button aria-label="第 13 頁：保護狀態改變可用操作" title="保護狀態改變可用操作"></button><button aria-label="第 14 頁：讓客戶確認問題是否解決" title="讓客戶確認問題是否解決"></button><button aria-label="第 15 頁：用同一案走完一輪" title="用同一案走完一輪"></button><button aria-label="第 16 頁：帶著一個問題去取證" title="帶著一個問題去取證"></button></nav><div class="page-controls"><span id="page-count" class="page-count" aria-live="polite">1 / 16</span><button class="nav-button" id="prev" aria-label="上一頁"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 5-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></button><button class="nav-button" id="next" aria-label="下一頁"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></button></div></footer><div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
-<aside id="speaker-notes" class="notes" hidden><div class="notes-grid"><div><h2>講述重點</h2><p id="notes-copy"></p></div><div><h2>Demo 操作</h2><ol id="demo-steps"></ol></div></div></aside>
+<footer class="wrap footer">PRX · 2026 年 11 月 3 日｜商業與首接為規劃。Mission Control 為合成 Demo。</footer>
+<dialog aria-labelledby="detail-title" id="topic-dialog">
+<div class="dialog-layout">
+<header class="dialog-head"><span id="detail-chapter"></span><button type="button" class="control" id="close-detail">關閉</button></header>
+<article class="detail" id="detail-body"><h2 tabindex="-1" id="detail-title"></h2><p class="summary" id="detail-summary"></p><div id="detail-sections"></div></article>
+<footer class="dialog-foot"><button type="button" class="control" id="prev-topic">上一主題</button><span id="detail-count" aria-live="polite"></span><button type="button" class="control" id="next-topic">下一主題</button></footer>
+</div>
+</dialog>
 <script>
-const content=[{"notes": "今天先說產品如何進入市場，以及 NGSS3 首接如何守住權限與來源責任。接著用提款進度的合成案例跑過 Mission Control。跨平台營運工作台是產品方向，畫面展示的是已完成的本機合成原型。", "steps": ["產品策略 → 首接門檻 → UX 改版 → 完整走查"]}, {"notes": "同一個玩家的兩筆提款可能在同一個對話出現。客服必須對到正確紀錄，交班後仍能保留證據與承諾。以真實但去識別的既有工作流程做比較，觀察人工時間、重開率和承諾達成。先確認採購者、付款者及資料責任人。", "steps": ["問聽眾目前在哪裡查狀態、如何找人接手、如何知道已解決。"]}, {"notes": "營運商是首要價值對象。包網商可承接通路與導入，收費關係與內容權限分開。若既有客服平台保有工單主檔，PRX 可供應查證或協作，依契約維持單一權威。先取得付費意向和實際開通與支援成本，再決定售價及通路。", "steps": ["辨識誰使用、誰採購、誰付款、誰維運。"]}, {"notes": "PRX 保留產品、發布、工作流程和授權主權。完整工作台保有足夠操作空間，輕量面板只帶必要情境。來源連接器供應業務證據，通道連接器供應收發與回執。既有工作台可只接一項能力。完整接入契約與具體技術仍是候選。", "steps": ["以同一筆案件解釋兩種入口共用授權與資料責任。"]}, {"notes": "先向責任方確認員工身份、來源租戶與品牌映射、可撤回唯讀範圍、狀態定義和錯誤樣本。PRX 獨立核對成員資格、資源、用途和操作。員工、玩家、通道各有身份驗證。瀏覽器情境不能直接授權。來源查不了時保留可用的案件工作，敏感資料降級。", "steps": ["先談一位客服、一個測試工作區及一種唯讀查證。"]}, {"notes": "盤點先確認試點問題、買方及資料責任。接著驗證一個測試身份能進正確工作區，查到有時間與版本的證據，完成一案。失聯、撤權與錯租戶須能重現。事件層再做重送、亂序與對帳，然後用不同 ID 或事件模式驗證第二來源。寫入來源、正式通道和自主 AI 另行決策。", "steps": ["指出若身份或授權取證不足，可退回安全跳轉或匿名服務。"]}, {"notes": "工作清單以案件為單位。已讀只更新閱讀狀態，回覆義務依工作狀態判斷。行內顯示通道、待回覆、等待與時計。桌面與窄版均可選案並回原列表。主管視角另看工作負荷、交班與服務時計。", "steps": ["在客服 1 開啟「我的工作」，切換檢視，從清單開案。"]}, {"notes": "切換案件後，Case Resume 提供目前工作脈絡與可查的變更。每案草稿保持各自範圍，回原清單可續從原位置工作。命令面板開案走同一條選取和返回路徑，避免清單與快捷入口還原行為不一致。", "steps": ["A 寫草稿 → B → C → 返回 A。再用命令面板開案並返回，核對焦點。"]}, {"notes": "示範時先對照本案參照和證據時間，再區分來源進度和客服處理進度。來源撤權時撤去明細。摘要角色不顯示原始來源識別。同名、不同品牌或不同提款不能自動合併。跨通道關聯另有獨立合成預覽，尚未納入主要工作台的資料模型。", "steps": ["打開 Player 360，檢視來源情境，切換權限或模擬來源失聯。"]}, {"notes": "請教與交班分開。請教只給必要資訊，原主責可繼續處理。交班待接受時工作仍有主責，接受後再轉移。對外承諾有獨立追蹤，來源受理與完成也各有含義。等待來源或同事時不可將等待標記直接當成停表。", "steps": ["在案件發起協作，切到接手者，比較待接受與接受後的狀態。"]}, {"notes": "時間是已確認的服務規則，並非效益數字。有效回覆需明確標記，問候或已讀不結算義務。可從主管視角下鑽時計。演示可用合成時間看即將到期和逾期，注意只有符合服務條件的等待才可暫停。", "steps": ["指出有效回覆操作與等待標記，再比較切換前後時計。"]}, {"notes": "快捷鍵 R 聚焦已授權的回覆。組字與輸入焦點受保護。巨集缺少可信資料時阻擋加入，既有公開草稿走確認。AI 使用合成建議，客服檢查來源、引用和目的地後採用。知識撤回後，舊 AI 草稿不能當有效依據。", "steps": ["開啟命令面板，再試一次有缺值的巨集，展示人工採用草稿。"]}, {"notes": "在 Demo 工具箱以已核實合成玩家觸發保護。常駐橫幅顯示狀態，原稿保留，中央規則攔截一般公開發送。按鈕可先讀固定保護回覆全文。外包摘要情境維持遮罩，管理關係不授予案件正文。", "steps": ["由工具箱觸發，再核對回覆目標、限制原因及保護回覆內容。"]}, {"notes": "對客確認問題是否解決後才詢問評價。續原案避免把尚在處理的問題推到新案，新的問題另有案件責任。已確認的服務進度、來源到帳與投遞結果要各自說明。未知投遞維持待確認。", "steps": ["從客戶端走一次未解決，再展示另一個已解決情境的評價。"]}, {"notes": "快速路線用提款疑問講工作價值。深入路線加上撤權、等待、巨集與保護。Demo 工具另有新人演練，可走五個關卡。專案結案記錄本機 356 核心與 105 瀏覽器測試通過。這些屬合成版本證據，真人、實體 IME、讀屏、正式來源、通道與 AI 均待另驗。", "steps": ["開始前開啟合成 Demo。逐步對照客服及客戶兩側。"]}, {"notes": "訪談先收集既有案件和實際處理方式。以 Demo 觀察理解與操作，另外確認 NGSS3 能提供哪些經授權的去識別契約。收齊後再選擇單一測試切片。第二來源、對外能力與計費依取證逐項決定。", "steps": ["離場前確認下一輪要驗證的案件、責任人與退出條件。"]}];
-const panels=[...document.querySelectorAll('.slide')], dots=[...document.querySelectorAll('.dots button')];
-let index=0, overview=false;
-function go(n, updateHash=true){index=Math.max(0,Math.min(panels.length-1,n));panels.forEach((s,i)=>s.classList.toggle('active',i===index));dots.forEach((b,i)=>b.setAttribute('aria-current',String(i===index)));document.getElementById('page-count').textContent=`${index+1} / ${panels.length}`;document.getElementById('prev').disabled=index===0;document.getElementById('next').disabled=index===panels.length-1;document.getElementById('progress-bar').style.width=`${(index+1)/panels.length*100}%`;document.getElementById('notes-copy').textContent=content[index].notes;const list=document.getElementById('demo-steps');list.replaceChildren(...content[index].steps.map(t=>{let li=document.createElement('li');li.textContent=t;return li}));if(updateHash)history.replaceState(null,'',`#${index+1}`);if(overview)panels[index].scrollIntoView({block:'start'});else window.scrollTo(0,0)}
-function toggleNotes(){let box=document.getElementById('speaker-notes');box.hidden=!box.hidden;document.getElementById('notes-button').setAttribute('aria-expanded',String(!box.hidden));if(!box.hidden)box.scrollIntoView({block:'nearest'})}
-document.getElementById('prev').onclick=()=>go(index-1);document.getElementById('next').onclick=()=>go(index+1);dots.forEach((b,i)=>b.onclick=()=>go(i));document.getElementById('notes-button').onclick=toggleNotes;
-document.getElementById('overview').onclick=()=>{overview=!overview;document.body.classList.toggle('overview',overview);document.getElementById('overview').setAttribute('aria-pressed',String(overview));go(index)};
-document.getElementById('fullscreen').onclick=async()=>{const btn=document.getElementById('fullscreen');try{if(document.fullscreenElement)await document.exitFullscreen();else if(document.documentElement.requestFullscreen)await document.documentElement.requestFullscreen();else btn.textContent='請用瀏覽器全螢幕'}catch{btn.textContent='請用瀏覽器全螢幕'}};
-document.addEventListener('fullscreenchange',()=>document.getElementById('fullscreen').textContent=document.fullscreenElement?'離開全螢幕':'全螢幕');
-document.addEventListener('keydown',e=>{if(e.altKey||e.ctrlKey||e.metaKey||e.isComposing||e.target.closest('input,textarea,select,[contenteditable=true]'))return;if(['ArrowRight','PageDown','ArrowLeft','PageUp','Home','End'].includes(e.key)){if(e.target.closest('.diagram'))return;e.preventDefault();go(e.key==='Home'?0:e.key==='End'?panels.length-1:index+(['ArrowRight','PageDown'].includes(e.key)?1:-1))}else if(e.key.toLowerCase()==='n'&&!e.target.closest('a,summary'))toggleNotes()});
-panels.forEach(s=>s.querySelectorAll('.diagram').forEach(d=>{d.tabIndex=0;d.setAttribute('aria-label','圖解，可左右捲動')}));
-document.body.classList.add('script-ready');go((parseInt(location.hash.slice(1))||1)-1,false);window.addEventListener('hashchange',()=>go((parseInt(location.hash.slice(1))||1)-1,false));
-</script></body></html>
+const chapters = [
+  {
+    id: 'product', title: '產品與商業策略', intro: '先用玩家案件解決證明價值，再選擇入口、買方與通路。',
+    topics: [
+      ['positioning','PRX 為誰解決什麼','玩家問題處理、來源證據、跨團隊交班與對客承諾。',
+        '第一個產品場景|Player Resolution Workspace 面向營運商客服與主管。客服接到玩家的提款疑問，需要找對交易、辨識來源狀態、請適當的人確認，最後告訴玩家下一步。主管則要知道誰在處理、何時該跟進、哪件事卡住。',
+        '為什麼值得驗證|聊天、工單、AI 回覆都可由既有工具提供。PRX 的差異化假說是，即使問題跨管道、來源平台及團隊，案件仍有可查的證據、負責人、承諾與結果。先找重複發生且現行工具處理成本高的問題。',
+        '長期範圍|以獨立營運與協作工作層演進。Telegram Bot、客服、外觀與受眾旅程可依用途選擇，知識與 AI 先服務案件流程。其他營運模組和跨企業協作依實際需求驗證。'],
+      ['routes','一個核心，三種商業包裝','直售工作台、合作夥伴通路，以及特定能力授權。',
+        'PRX Direct|直接與營運商或外包客服團隊簽約，提供獨立工作台及選用模組。PRX 可直接觀察使用與續約需求，客戶也需要負擔導入與工作習慣轉換。',
+        'PRX Partner|包網商可推薦、共同銷售、轉售或依合約提供品牌版本。先釐清誰簽約、開票、開通、支援及處理事故。轉售或集團管理權不會自動取得客戶內容。',
+        'PRX Resolution API|已有客服工作台的營運商可評估只接查證、證據或協作能力。若既有 Helpdesk 掌管工單，PRX 與對方先約定單一案件主檔、關聯及回寫責任。'],
+      ['pricing','計費、成本與試點判斷','從底費、工作容量與可稽核用量著手，先驗證付費者。',
+        '計費候選|工作區訂閱可含基本工作席次或容量。AI、訊息與重型處理以包含額度及透明超量計費。企業導入、維運和批發授權分開議定。正式價目須等成本及採購證據。',
+        '怎麼知道值不值得|記錄現行流程與試點在每件實際解決案件的人工時間、重開率、交班品質與承諾達成。同步記錄每個工作區的開通、適配、支援、通道、AI 與分潤成本。',
+        '避免錯算成果|客服沉默或 AI 回了一則訊息不能計為解決。若測試 AI 成果收費，先約定人工接手、重開、來源結果、重複計費與申訴口徑。首要問題仍是營運商或合作夥伴是否願意付費。'],
+      ['architecture','獨立產品與多個入口','共用案件、協作及授權。入口依工作情境調整。',
+        '獨立工作台|完整 Web 工作台承載高密度客服與協作。PRX 保有自己的產品核心、版本、部署節奏與工作流程，其他來源可用同一方式接入。',
+        '從既有後台進入|建議以安全啟動或深連結進入完整頁面。限縮的情境面板可在原後台顯示一項任務。既有客服系統也可透過選定的服務能力接入。',
+        '共用邊界|業務來源提供身份與業務證據，訊息通道提供收件、目的地與回執。兩類連接器分開，通道身份不可直接等同來源會員。']
+    ]
+  },
+  {
+    id: 'ngss3', title: 'NGSS3 接入建議', intro: '先確認身份、權限及資料權威，再跑一條唯讀案件流程。以下為候選方案。',
+    topics: [
+      ['phase-zero','第一步：盤點能力與試點','先取得樣本、確認責任人，列出可驗證能力及缺口。',
+        '請 NGSS3 提供什麼|請責任方提供去識別的員工身份、租戶與品牌識別方式、唯讀 API 和狀態欄位範例、錯誤／撤權樣本、事件版本與重送規則。逐項標記已驗證、未知或不支援。',
+        '請營運商確認什麼|選一個重複發生的問題和一個可控測試工作區，確認客服、主管、採購、付款、資料用途、支援及事故責任。從現有流程建立可比較的人工時間、重開與承諾基準。',
+        '完成門檻|具備雙方責任表、來源權威矩陣、能力差距、風險清單及一條可重播的驗收路線。無法確認的能力保留未知，候選合作不等同已接入或簽約。'],
+      ['launch','從 NGSS3 後台進入 PRX','先採頂層工作台的候選路線，再評估限定嵌入。',
+        '候選流程|員工在 NGSS3 選「客服中心」或「案件追蹤」，經可驗證的身份聯邦和短效啟動情境進入 PRX 頂層頁面。PRX 建立自己的工作階段，重新核對工作區成員資格、品牌、用途及案件權限。OIDC 或身份代理的選擇待取證。',
+        '邊界|員工、玩家及通道各自驗證。URL 或嵌入頁送來的會員 ID 只提供待驗情境。憑證由可信服務端管理，啟動連結須具時效，工作區授權不由前端或登入成功推導。',
+        '如何驗收|有效身份進入正確工作區。停權員工、其他租戶與過期連結被拒絕。若未來嵌入小型面板，亦需核對允許來源、訊息格式及資源授權。'],
+      ['data-ownership','誰擁有會員、交易與案件','NGSS3 管業務來源，PRX 管自己的服務案件及責任。',
+        'NGSS3 的責任|會員、錢包、帳務、交易、資格與業務規則由來源決定。來源需提供精確狀態語義、觀測時間、修正版本及可撤銷的查詢範圍。',
+        'PRX 的責任|處理自己的對話、案件、工作主責、交班和承諾，保存最小且可追溯的來源引用。接第三方 Helpdesk 時由契約決定案件權威。夥伴、營運組織、品牌、工作區和連線識別分開。',
+        '例子|若來源回傳「支付方受理」，客服只轉述已驗證的來源狀態。客服結案、訊息投遞和資金到帳各有紀錄。相同姓名或外部 ID 出現在不同品牌或租戶時保持隔離。'],
+      ['vertical-slice','第一條端到端切片','一名客服、一個測試工作區、一種唯讀查證。',
+        '正常路徑|測試員工由 NGSS3 啟動 PRX → 伺服器驗權 → 開啟玩家提款狀態詢問 → 查一筆來源證據 → 具名客服負責 → 必要時請人查證或交班 → 回覆和追問留在案件。',
+        '失敗路徑|測試錯租戶、來源撤權、身份停用、逾時及切到另一玩家後的遲到回應。來源中斷時保留仍獲授權的案件工作，敏感明細不顯示，來源標成未知或過期。查詢授權不足時可改安全跳轉或匿名服務。',
+        '驗收輸出|記錄來源、版本、時間、授權、責任與回覆結果，並區分合成、契約和授權測試環境的證據。首切片以唯讀為限。'],
+      ['scale','可靠性、第二來源與商業複製','先守住故障與撤權，再驗證另一平台是否可替換。',
+        '可靠性|能力宣告逐連線記錄身份方式、支援欄位、版本、權限和健康。收到事件要驗證來源、去重、處理亂序與對帳，區分受理、完成及未知。未知結果先查狀態或交人處置。',
+        '第二來源|挑選識別、狀態或事件模式不同的來源，量測適配成本及共用流程比例。完整工作台優先保有獨立入口，限定嵌入與公開 API 按證據逐步開放。',
+        '商業複製|開通成本、案件成果、付費意願及維運責任成立後，再決定轉售、共同品牌或能力授權。金流寫入、自主 AI 和完整市集需另作決策。']
+    ]
+  },
+  {
+    id: 'mission-control', title: 'Mission Control 的客服流程', intro: '從一筆提款進度問題走完接案、查證、交接、回覆與客戶確認。',
+    topics: [
+      ['queue','找出下一件要處理的工作','案件列集中待回覆、主責、通道、到期與等待。',
+        '改了什麼|「我的工作」以案件而非單一對話為工作單位，提供「需我處理」「即將到期」「等待外部／同事」等檢視。客服可以先知道下一步，再進入案件。',
+        '情境|有一件剛讀過但仍需回覆的案、一件等來源查證的案，以及一件即將到期的案。已讀只更新閱讀狀態。到期檢視使用 15 分鐘內的有效時計。',
+        '親手走查|在合成 Demo 的客服端開啟「我的工作」，切換檢視，選一案再返回。主管也可從工作負荷與時計下鑽。'],
+      ['resume','切案後回到原工作','保留清單脈絡及各案草稿，用 Case Resume 接回下一步。',
+        '改了什麼|從案件列或命令面板開案走同一入口。回原清單時保留篩選、捲動位置與鍵盤焦點。案件恢復區以已知資料呈現目前脈絡，草稿依案件及公開／內部範圍隔離。',
+        '情境|在 A 案撰寫提款回覆，切到 B、C 查其他案，再回到 A。A 的稿件與處理情境仍可辨識，其他案件不沿用這份稿件。',
+        '親手走查|A → B → C → A，再以命令面板開案並返回。注意清單焦點與草稿。'],
+      ['player-context','在 Player 360 查對本案證據','把來源狀態、資料時間、授權與保護放回案件脈絡。',
+        '改了什麼|唯讀情境顯示對應來源證據，並區分遮罩、受限、未知、未提供及來源過期。已撤權的來源明細從可讀範圍移除，摘要角色看不到原始來源識別。',
+        '情境|同一玩家可能有兩筆提款，兩案仍應各自對到正確的來源參照。跨品牌同名保持隔離。跨通道案件關聯另有合成設計預覽，屬後續模型提案。',
+        '親手走查|打開 Player 360，對照本案引用及資料時間。切換可用的合成權限或來源情境，觀察不可查驗與遮罩。'],
+      ['handoff','請人查證、交班及追蹤承諾','請教時保有原主責，交班接受後才轉移。',
+        '改了什麼|協作與交班保留責任脈絡，客服能辨識正等待玩家、來源或同事。對客承諾需要自己的追蹤狀態，普通回覆不會順帶履行其他承諾。',
+        '情境|來源一時無法確認，客服向授權同事請教，仍要承擔對客更新。交給下一班時，新主責接受後接手查證和承諾。',
+        '親手走查|從案件建立協作，切換到受邀者或交班接手者，比較待接受與已接受的主責。'],
+      ['sla','服務時計與等候原因','24/7 服務日曆，首次有效回覆 15 分鐘、後續 30 分鐘、解決 4 小時。',
+        '改了什麼|在案件列及情境中呈現即將到期、逾期、暫停與完成。有效回覆須由客服明確標記，已讀或問候無法結算服務義務。',
+        '情境|等待玩家補件只有符合服務規則才暫停。等待來源或同事的標記本身不會停表。主管可以查到時間從哪一項義務而來。',
+        '親手走查|用合成時間比較即將到期與逾期，再對照不同等待類型與有效回覆前後。'],
+      ['agent-tools','捷徑、巨集與人工審閱','命令面板加速尋找，巨集與 AI 建議仍經過人員確認。',
+        '改了什麼|Cmd／Ctrl+K 可找案件、知識與操作。R 聚焦已獲授權的回覆，組字與輸入焦點有防誤觸。公開與內部收件目標可辨識。',
+        '情境|巨集引用了缺少可信來源的值時，系統阻擋加入並保留原稿。AI 建議是合成資料，客服需確認引用、內容與收件目標。知識撤回時攔截以舊引用為依據的建議稿。',
+        '親手走查|從命令面板開案，試有缺值的巨集，並對照人工採用草稿和既有草稿衝突。'],
+      ['protection','玩家保護時限制一般發送','保留原稿，優先顯示保護狀態與可用回覆。',
+        '改了什麼|合成玩家的自我排除確認後，保護橫幅常駐。一般公開發送受中央規則攔截，原稿保留，客服可先閱讀固定保護回覆全文。',
+        '情境|客服正在撰寫一般回覆，玩家保護狀態在處理途中變更。客服應理解為何動作不可用及能採取的下一步。受限角色維持必要遮罩。',
+        '親手走查|透過 Demo 工具觸發保護情境，比較一般回覆和保護回覆。'],
+      ['closeout','由玩家確認是否解決','未解決續原案，已解決才進入評價。',
+        '改了什麼|客戶先表達是否解決。未解決可延續本案，真正另一個問題另立案件。評價與服務結案週期相連。',
+        '情境|客服提供查證結果後，玩家仍未收到款項。玩家可延續原案。若發送結果未知，客服應待對帳，畫面不能當作已送達。',
+        '親手走查|切到合成客戶端，各走一次「仍未解決」與「已解決」。比較續案、評價與來源交易狀態。'],
+      ['evidence','怎麼展示與判讀證據','可走快速案件路線或深入驗證失聯、撤權及交班。',
+        '快速路線|從「我的工作」接案 → Player 360 查證 → 記下一步並回覆 → 客戶端確認。需要更深入時加入切案保稿、交班、未知投遞與玩家保護。',
+        '訓練與現有證據|Demo 工具另有新人演練。Mission Control 結案記錄 356 項核心與 105 項瀏覽器測試通過，涵蓋合成環境及發布路徑。',
+        '待驗證|真人工作效率、讀屏、實體輸入法、正式 NGSS3、通道、AI 與商務試點仍待取證。']
+    ]
+  }
+];
+
+const icon = (path) => `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="${path}"/></svg>`;
+const arrow = icon('M5 12h14m-6-6 6 6-6 6');
+const plus = icon('M12 5v14M5 12h14');
+const escapeText = (value) => value.replace(/[&<>"']/g, (char) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+const topics = chapters.flatMap((chapter) => chapter.topics.map(([id,title,summary,...sections]) => ({id,title,summary,sections,chapter:chapter.title})));
+const nav = document.getElementById('chapters');
+nav.innerHTML = chapters.map((c,i) => `<li><a href="#${c.id}"><b>${i+1}</b><span>${c.title}</span>${arrow}</a></li>`).join('');
+const reader = document.getElementById('reader');
+reader.innerHTML = chapters.map((c) => `
+<section class="chapter" id="${c.id}" aria-labelledby="${c.id}-title">
+  <div><h2 id="${c.id}-title">${escapeText(c.title)}</h2><p>${escapeText(c.intro)}</p></div>
+  <ol class="topics">${c.topics.map(([id,title,summary],i) => `
+    <li><button type="button" class="topic" id="open-${id}" data-topic="${id}" aria-haspopup="dialog">
+      <span class="number" aria-hidden="true">${String(i+1).padStart(2,'0')}</span>
+      <span><strong>${escapeText(title)}</strong><small>${escapeText(summary)}</small></span>${plus}
+    </button></li>`).join('')}</ol>
+</section>`).join('');
+
+const dialog = document.getElementById('topic-dialog');
+const body = document.getElementById('detail-body');
+const title = document.getElementById('detail-title');
+const prev = document.getElementById('prev-topic');
+const next = document.getElementById('next-topic');
+let active = 0;
+let opener = null;
+let returnHash = '';
+function displayTopic(index) {
+  if (index < 0 || index >= topics.length) return;
+  const topic = topics[index];
+  active = index;
+  title.textContent = topic.title;
+  document.getElementById('detail-chapter').textContent = topic.chapter;
+  document.getElementById('detail-summary').textContent = topic.summary;
+  document.getElementById('detail-count').textContent = `${index+1} / ${topics.length}`;
+  document.getElementById('detail-sections').innerHTML = topic.sections.map((section) => {
+    const [heading, copy] = section.split('|');
+    return `<h3>${escapeText(heading)}</h3><p>${escapeText(copy)}</p>`;
+  }).join('');
+  prev.disabled = index === 0;
+  next.disabled = index === topics.length - 1;
+  if (!dialog.open) dialog.showModal();
+  body.scrollTop = 0;
+  title.focus({preventScroll:true});
+}
+function openTopic(id, trigger) {
+  const index = topics.findIndex((topic) => topic.id === id);
+  if (index === -1) return;
+  opener = trigger;
+  returnHash = location.hash.startsWith('#topic-') ? '' : location.hash;
+  history.replaceState(null,'',`#topic-${id}`);
+  displayTopic(index);
+}
+function moveTopic(offset) {
+  const index = active + offset;
+  if (!topics[index]) return;
+  history.replaceState(null,'',`#topic-${topics[index].id}`);
+  displayTopic(index);
+}
+reader.addEventListener('click', (event) => {
+  const button = event.target.closest('button[data-topic]');
+  if (button) openTopic(button.dataset.topic, button);
+});
+prev.addEventListener('click', () => moveTopic(-1));
+next.addEventListener('click', () => moveTopic(1));
+function closeTopic() {
+  dialog.close();
+  if (location.hash.startsWith('#topic-')) history.replaceState(null,'',returnHash || location.pathname + location.search);
+  opener?.focus();
+}
+document.getElementById('close-detail').addEventListener('click', closeTopic);
+dialog.addEventListener('cancel', (event) => {
+  event.preventDefault();
+  closeTopic();
+});
+const legacyTopics = ['positioning','positioning','routes','architecture','phase-zero','vertical-slice','queue','resume','player-context','handoff','sla','agent-tools','protection','closeout','evidence','scale'];
+function openFromHash() {
+  const hash = location.hash.slice(1);
+  const id = hash.startsWith('topic-') ? hash.slice(6) : legacyTopics[Number(hash)-1];
+  const button = document.getElementById(`open-${id}`);
+  if (button) openTopic(id, button);
+}
+window.addEventListener('hashchange', openFromHash);
+openFromHash();
+</script>
+</body>
+</html>
