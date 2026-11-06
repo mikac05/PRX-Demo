@@ -1,13 +1,13 @@
 {
-  "source_commit": "511e467dce09fff43027ccd2f10c56e73d957e83",
+  "source_commit": "6cc7233b0981b78df06b6625a14d102ca9b4b137",
   "base": "/PRX-Demo/",
-  "presentation_sha256": "17b27631ace2feb7009a22bffb7e35258992b137ab60ee765487ba226993fb42",
+  "presentation_sha256": "a4faad951333c12cfa11fbb8fa70bc2fd83b7ec6b1b69732aef2515ecd7bd6cc",
   "presentation_guide_sha256": "6e2d013a1100fce50810d2de41483304f2399865dd305cd3125e9db400107993",
   "kind": "synthetic-frontend-prototype",
   "files": {
-    "assets/index-BQNHcsqS.css": "bf85397d879542c0166089b3016efd65e0faa10f6dd9cda57ab0a3f16301b72b",
-    "assets/index-CHSZCHDn.js": "4e2a2848ec39485eb0cceb81a1b985733da74a11f8bb52ac6d31ea525f59cc2e",
-    "index.html": "880e9dae842b93e93bde7e1def897c051e9e1455abc78d33805b3281a3540582",
+    "assets/index-C8-jEd61.js": "86b13230146e571e208becf8a720ecb6960415f6396bdf60be6d7c502a27d86d",
+    "assets/index-Col2gOxb.css": "ffa8e5ae9c7168fdc07a1dc3bd29553dfb028cac9fafc4e879f8910cc42bc425",
+    "index.html": "4c21d33f609289acf60179b7d426a4ded82493e70e0a0ab05a57442d8271dc33",
     "legacy-experience/assets/home-green-black/game-dragons-rivalry.png": "eb48ff9e56edf2d273d5f1231cf3dac72e12eadb5e5b167b83eb3a817b074b72",
     "legacy-experience/assets/home-green-black/game-fortune-wild.png": "4a1d2219191aee967bbcab952795e4ba1b339c9d2e1ef00652423b1d4aabc7ec",
     "legacy-experience/assets/home-green-black/game-pussy-castle.png": "2de4066cdd4c96ea4a90f4189624633ea3f92960536c4e667ee403d4fe95258a",

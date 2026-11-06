@@ -139,6 +139,7 @@ ol.walk details[open] summary::after { content: "−" }
 ol.walk summary small { font-weight: 400; color: var(--muted) }
 ol.walk summary:hover { background: var(--tint) }
 ol.steps { margin: .25rem 0 .2rem; padding-left: 1.3rem; display: grid; gap: .25rem }
+ol.walk .daily { margin: .35rem 0 0; font-size: .85rem; color: var(--muted) }
 .demo-action { flex-wrap: wrap }
 @media (max-width: 700px) { ol.walk summary { grid-template-columns: minmax(0, 1fr) 1.5rem } ol.walk summary small { grid-column: 1 / -1 } }
 /* /walkthrough:css */
@@ -382,19 +383,29 @@ ol.steps { margin: .25rem 0 .2rem; padding-left: 1.3rem; display: grid; gap: .25
 
     <section class="chapter" id="demo" aria-labelledby="demo-title">
       <div class="chapter-title"><span aria-hidden="true">06</span><h2 id="demo-title">先選一種工作，再看這一案</h2></div>
-      <p class="lead">本機執行 <code>npm run dev</code> 後開啟 <a href="http://127.0.0.1:5173/#/demo">127.0.0.1:5173/#/demo</a>。Demo 工具先列出八種工作。選一列就進入該案，並重置這個 Session 的所有分頁。選完之後，工具只留下這個情境用得到的項目。</p>
+      <p class="lead">Demo 工具箱依任務列出 8 種工作（前 7 項為第一線客服日常任務，第 8 項為主管跨案追蹤看板）。切換情境前會彈窗確認，避免意外清除同 Session 操作與草稿；已就緒情境可直接續辦。工具箱預設只顯示該情境引導工具，亦可無損切換至進階測試工具。本機執行 <code>npm run dev</code> 後開啟 <a href="http://127.0.0.1:5173/#/demo">127.0.0.1:5173/#/demo</a>；線上公開展示為已發布版本（不包含本次本機修改）。</p>
       <ol class="gates" id="mission-control">
         <li><details id="topic-queue" open><summary><strong>待回覆</strong><small>客服 1 · Alex Chen 的 Web IM</small></summary><div class="detail">
-          <p>對話區可以直接輸入。公開回覆與內部備註共用同一個輸入區，切換後才送出。</p>
+          <p>對話區可以直接輸入。公開回覆與內部紀錄共用同一個輸入區，切換後才送出。</p>
+          <p class="bridge"><a href="https://mikac05.github.io/PRX-Demo/#/demo?situation=reply" target="_blank" rel="noopener">線上已發布情境</a> ｜ <a href="http://127.0.0.1:5173/#/demo?situation=reply">本機試用</a></p>
         </div></details></li>
         <li><details id="topic-handoff"><summary><strong>待接受的交班</strong><small>客服 2 · 林小嶼</small></summary><div class="detail">
-          <p>下一步是接受交班。要看原主責，按「看原主責」，不會再重置。</p>
+          <p>下一步是接受交班。要看原主責，按「看原主責」可在同一頁切換視角，不會重置情境。</p>
+          <p class="bridge"><a href="https://mikac05.github.io/PRX-Demo/#/demo?situation=handoff" target="_blank" rel="noopener">線上已發布情境</a> ｜ <a href="http://127.0.0.1:5173/#/demo?situation=handoff">本機試用</a></p>
         </div></details></li>
         <li><details id="topic-player-context"><summary><strong>來源現在不能查</strong><small>客服 1 · 來源離線</small></summary><div class="detail">
-          <p>標題寫著來源無法查驗，右側停在資料。不要把離線資料當成已到帳。</p>
+          <p>標題提示來源無法查驗，右側停在快取資料，附技術群組模擬工具。切勿將離線資料當成最新帳況。</p>
+          <p class="bridge"><a href="https://mikac05.github.io/PRX-Demo/#/demo?situation=source" target="_blank" rel="noopener">線上已發布情境</a> ｜ <a href="http://127.0.0.1:5173/#/demo?situation=source">本機試用</a></p>
         </div></details></li>
-        <li><details id="topic-closeout"><summary><strong>其餘四種</strong><small>改時間、請同事、補一件、保護中、誰卡住了</small></summary><div class="detail">
-          <p>要改對客時間會看到下一步與期限。請同事看不轉移主責。請客戶補一件直接看到補件目的。保護中不能發一般回覆。誰卡住了是主管的案件區。</p>
+        <li><details id="topic-closeout"><summary><strong>其餘五種</strong><small>改時間、請同事、補一件、保護中、誰卡住了</small></summary><div class="detail">
+          <p>前七項為第一線客服日常任務，第八項為主管跨案追蹤看板：</p>
+          <ul>
+            <li><strong>要改對客時間</strong>（客服 1）：承諾快到期，看下一步與期限，可快進 15 分鐘觀察承諾調整。（<a href="https://mikac05.github.io/PRX-Demo/#/demo?situation=promise" target="_blank" rel="noopener">線上已發布</a> ｜ <a href="http://127.0.0.1:5173/#/demo?situation=promise">本機試用</a>）</li>
+            <li><strong>請同事看</strong>（客服 1）：技術支援請教，主責不轉移，可查看受邀同事視角。（<a href="https://mikac05.github.io/PRX-Demo/#/demo?situation=consult" target="_blank" rel="noopener">線上已發布</a> ｜ <a href="http://127.0.0.1:5173/#/demo?situation=consult">本機試用</a>）</li>
+            <li><strong>請客戶補一件</strong>（客服 1）：直接顯示補件目的與追蹤狀態。（<a href="https://mikac05.github.io/PRX-Demo/#/demo?situation=material" target="_blank" rel="noopener">線上已發布</a> ｜ <a href="http://127.0.0.1:5173/#/demo?situation=material">本機試用</a>）</li>
+            <li><strong>保護中</strong>（客服 1）：玩家帳號受保護時限制發送一般公開回覆，僅能提供合規保護說明。（<a href="https://mikac05.github.io/PRX-Demo/#/demo?situation=protection" target="_blank" rel="noopener">線上已發布</a> ｜ <a href="http://127.0.0.1:5173/#/demo?situation=protection">本機試用</a>）</li>
+            <li><strong>誰卡住了</strong>（主管）：主管跨案案件區（CaseArea），鳥瞰卡住與即將到期案件。（<a href="https://mikac05.github.io/PRX-Demo/#/demo?situation=stuck" target="_blank" rel="noopener">線上已發布</a> ｜ <a href="http://127.0.0.1:5173/#/demo?situation=stuck">本機試用</a>）</li>
+          </ul>
         </div></details></li>
       </ol>
       <div class="disclosures">
@@ -411,16 +422,18 @@ ol.steps { margin: .25rem 0 .2rem; padding-left: 1.3rem; display: grid; gap: .25
         </div></details>
       </div>
       <div class="demo-action">
-        <a class="button" href="https://mikac05.github.io/PRX-Demo/#/demo" target="_blank" rel="noopener">開啟合成 Demo（新分頁）</a>
-        <span>客服與玩家情境使用合成資料。</span>
+        <a class="button" href="https://mikac05.github.io/PRX-Demo/#/demo" target="_blank" rel="noopener">開啟線上已發布 Demo（新分頁）</a>
+        <a class="button" href="http://127.0.0.1:5173/#/demo" target="_blank" rel="noopener">開啟本機 Demo</a>
+        <span>線上展示為已發布版本（不代表本次本機修改已部署）；展示資料皆為合成模擬。</span>
       </div>
       <p class="bridge">例外功能在下一章，不是進入 Demo 的第一步。</p>
+      <p class="bridge"><a href="#walkthrough">接著依清單，逐項走查 Demo 功能。</a></p>
       <p class="related"><span>延伸閱讀</span><a href="./guide.html#demo">Demo 走查步驟與適用範圍</a></p>
     </section>
 <!-- walkthrough:chapter -->
     <section class="chapter" id="walkthrough" aria-labelledby="walkthrough-title">
       <div class="chapter-title"><span aria-hidden="true">07</span><h2 id="walkthrough-title">32 項客服功能，逐一走查</h2></div>
-      <p class="lead">與 Demo 工具箱的「功能走查」同一份清單（資料同源）。開啟 Demo 後挑功能、照步驟操作；需要切換情境或示範身份時，使用 Demo 工具箱，情境重置會先經確認。</p>
+      <p class="lead">與 Demo 工具箱的「功能走查」同一份清單（資料同源）。先從 8 種日常工作進入 Demo；這裡是備查：每項標著日常入口，展開看操作流程。需要切換情境或示範身份時，使用 Demo 工具箱，情境重置會先經確認。</p>
       <div class="demo-action">
         <a class="button" href="https://mikac05.github.io/PRX-Demo/#/demo" target="_blank" rel="noopener">開啟合成 Demo（新分頁）</a>
         <span>展開各項查看操作流程；全部畫面為合成資料。</span>
@@ -428,23 +441,23 @@ ol.steps { margin: .25rem 0 .2rem; padding-left: 1.3rem; display: grid; gap: .25
 <div class="walk-group">
         <h3>核心 A · 工作總覽</h3>
         <ol class="walk">
-          <li><details id="feature-1"><summary><strong>#1 我的工作</strong><small>待辦按工作項列出；同客戶多案按案號分組，顯示最緊急一項＋另有 N 項。</small></summary><div class="detail"><ol class="steps">
+          <li><details id="feature-1"><summary><strong>#1 我的工作</strong><small>待辦按工作項列出；同客戶多案按案號分組，顯示最緊急一項＋另有 N 項。</small></summary><div class="detail"><p class="daily">日常入口：誰卡住了</p><ol class="steps">
               <li>開「我的工作」。</li>
               <li>瀏覽按緊急度排好的工作項。</li>
               <li>點一項進入案件處理。</li>
               <li>處理完回來，列表自動更新。</li>
             </ol></div></details></li>
-          <li><details id="feature-2"><summary><strong>#2 儲存視圖與篩選</strong><small>四個預設視圖：需我處理／即將到期／等待外部或同事／全部案件；篩選條件會記住。</small></summary><div class="detail"><ol class="steps">
+          <li><details id="feature-2"><summary><strong>#2 儲存視圖與篩選</strong><small>四個預設視圖：需我處理／即將到期／等待外部或同事／全部案件；篩選條件會記住。</small></summary><div class="detail"><p class="daily">日常入口：誰卡住了</p><ol class="steps">
               <li>點視圖標籤，列表即時切換。</li>
               <li>再按範圍（我的、待認領、團隊）與狀態細篩。</li>
               <li>切換其他頁面再回來，確認篩選仍在。</li>
             </ol></div></details></li>
-          <li><details id="feature-3"><summary><strong>#3 待我回應</strong><small>一欄收攏交班邀請、派單邀請、查證待處理；已逾時標「已逾時 · 檢視原案」。</small></summary><div class="detail"><ol class="steps">
+          <li><details id="feature-3"><summary><strong>#3 待我回應</strong><small>一欄收攏交班邀請、派單邀請、查證待處理；已逾時標「已逾時 · 檢視原案」。</small></summary><div class="detail"><p class="daily">日常入口：待接受的交班</p><ol class="steps">
               <li>開「待我回應」。</li>
               <li>看標籤區分種類。</li>
               <li>點一列直達原案對應位置處理。</li>
             </ol></div></details></li>
-          <li><details id="feature-4"><summary><strong>#4 案件追蹤</strong><small>跨案件看板：未結／我負責／需要協助／全部；每卡顯示管道、狀態、追蹤是否逾時。</small></summary><div class="detail"><ol class="steps">
+          <li><details id="feature-4"><summary><strong>#4 案件追蹤</strong><small>跨案件看板：未結／我負責／需要協助／全部；每卡顯示管道、狀態、追蹤是否逾時。</small></summary><div class="detail"><p class="daily">日常入口：誰卡住了</p><ol class="steps">
               <li>開「案件追蹤」。</li>
               <li>選篩選。</li>
               <li>鳥瞰哪些案卡住。</li>
@@ -455,25 +468,25 @@ ol.steps { margin: .25rem 0 .2rem; padding-left: 1.3rem; display: grid; gap: .25
 <div class="walk-group">
         <h3>核心 B · 回覆</h3>
         <ol class="walk">
-          <li><details id="feature-8"><summary><strong>#8 公開回覆／內部紀錄分隔</strong><small>同一個輸入框切換「公開回覆」與「內部紀錄」；公開的才傳給客戶。</small></summary><div class="detail"><ol class="steps">
+          <li><details id="feature-8"><summary><strong>#8 公開回覆／內部紀錄分隔</strong><small>同一個輸入框切換「公開回覆」與「內部紀錄」；公開的才傳給客戶。</small></summary><div class="detail"><p class="daily">日常入口：待回覆</p><ol class="steps">
               <li>確認頂部模式（公開／內部）。</li>
               <li>輸入內容。</li>
               <li>Ctrl+Enter 送出（Esc 取消匯入）。</li>
               <li>內部紀錄進時間軸但標示為內部。</li>
             </ol></div></details></li>
-          <li><details id="feature-9"><summary><strong>#9 按案件隔離的草稿</strong><small>每案公開／內部草稿各自獨立；A 案打一半去看 B 案，回來還在。</small></summary><div class="detail"><ol class="steps">
+          <li><details id="feature-9"><summary><strong>#9 按案件隔離的草稿</strong><small>每案公開／內部草稿各自獨立；A 案打一半去看 B 案，回來還在。</small></summary><div class="detail"><p class="daily">日常入口：待回覆</p><ol class="steps">
               <li>A 案輸入不送出。</li>
               <li>切 B 案輸入。</li>
               <li>切回 A 案，兩邊草稿各自保留。</li>
               <li>分別送出。</li>
             </ol></div></details></li>
-          <li><details id="feature-10"><summary><strong>#10 回覆模板</strong><small>搜尋、分類、收藏、最近使用；變數自動帶入；無法確認的欄位會被擋下。</small></summary><div class="detail"><ol class="steps">
+          <li><details id="feature-10"><summary><strong>#10 回覆模板</strong><small>搜尋、分類、收藏、最近使用；變數自動帶入；無法確認的欄位會被擋下。</small></summary><div class="detail"><p class="daily">日常入口：待回覆</p><ol class="steps">
               <li>按發話區的「回覆模板」。</li>
               <li>搜尋或瀏覽分類。</li>
               <li>預覽內容與變數。</li>
               <li>插入草稿，審閱後送出。</li>
             </ol></div></details></li>
-          <li><details id="feature-11"><summary><strong>#11 命令列</strong><small>Ctrl／Cmd+K 喚起：切模式、開請教、跳案件、開知識；無權限指令顯示原因。</small></summary><div class="detail"><ol class="steps">
+          <li><details id="feature-11"><summary><strong>#11 命令列</strong><small>Ctrl／Cmd+K 喚起：切模式、開請教、跳案件、開知識；無權限指令顯示原因。</small></summary><div class="detail"><p class="daily">日常入口：待回覆</p><ol class="steps">
               <li>按 Ctrl+K（Mac 為 Cmd+K）。</li>
               <li>輸入關鍵字。</li>
               <li>選動作或案件，直接執行或跳轉。</li>
@@ -483,26 +496,26 @@ ol.steps { margin: .25rem 0 .2rem; padding-left: 1.3rem; display: grid; gap: .25
 <div class="walk-group">
         <h3>核心 C · 時限與承諾</h3>
         <ol class="walk">
-          <li><details id="feature-5"><summary><strong>#5 等待對象章</strong><small>案件在等誰一眼標籤：玩家補件／第三方來源／同事接班；暫停中加註。</small></summary><div class="detail"><ol class="steps">
+          <li><details id="feature-5"><summary><strong>#5 等待對象章</strong><small>案件在等誰一眼標籤：玩家補件／第三方來源／同事接班；暫停中加註。</small></summary><div class="detail"><p class="daily">日常入口：要改對客時間</p><ol class="steps">
               <li>不用操作，開案即見。</li>
               <li>掃過列表，確認等待中案件卡在哪。</li>
             </ol></div></details></li>
-          <li><details id="feature-6"><summary><strong>#6 服務水準協議</strong><small>每案取「下一個到期的時計」：逾期紅、即將到期黃、正常、已暫停、已結案。</small></summary><div class="detail"><ol class="steps">
+          <li><details id="feature-6"><summary><strong>#6 服務水準協議</strong><small>每案取「下一個到期的時計」：逾期紅、即將到期黃、正常、已暫停、已結案。</small></summary><div class="detail"><p class="daily">日常入口：要改對客時間</p><ol class="steps">
               <li>掃列表看顏色。</li>
               <li>點徽章或進案看時限詳情（定義、規則、起點、完成證據、暫停紀錄）。</li>
             </ol></div></details></li>
-          <li><details id="feature-16"><summary><strong>#16 四種服務時計</strong><small>首次回覆、後續回覆、解決、對客承諾四條時計；歷史案件起點不足會標示。</small></summary><div class="detail"><ol class="steps">
+          <li><details id="feature-16"><summary><strong>#16 四種服務時計</strong><small>首次回覆、後續回覆、解決、對客承諾四條時計；歷史案件起點不足會標示。</small></summary><div class="detail"><p class="daily">日常入口：要改對客時間</p><ol class="steps">
               <li>進案開時限詳情。</li>
               <li>看四條各剩多少、誰負責。</li>
               <li>該回的回、該暫停的暫停。</li>
             </ol></div></details></li>
-          <li><details id="feature-17"><summary><strong>#17 承諾改期</strong><small>承諾快來不及出現「調整回覆時間」：對客說明＋時間選擇＋預覽＋內部原因。</small></summary><div class="detail"><ol class="steps">
-              <li>寫對客說明。</li>
-              <li>選新時間，看預覽確認。</li>
-              <li>寫內部原因（僅內部可見）。</li>
-              <li>傳送改期說明；投遞待確認時原時間不變並提示。</li>
+          <li><details id="feature-17"><summary><strong>#17 承諾改期</strong><small>更改回覆時間：選新時間、填內部原因，再加入對話區回覆；確認送出後才改期。</small></summary><div class="detail"><p class="daily">日常入口：要改對客時間</p><ol class="steps">
+              <li>按「更改回覆時間」，選新時間。</li>
+              <li>填內部原因（僅團隊可見），按「加入回覆」。</li>
+              <li>有舊草稿時，選合併、取代或取消。</li>
+              <li>在對話區編輯說明並送出；投遞待確認時原時間不變並保留草稿。</li>
             </ol></div></details></li>
-          <li><details id="feature-18"><summary><strong>#18 時限暫停／恢復</strong><small>時限詳情裡的暫停表單（寫原因）與恢復鈕；交班中的案件不給暫停。</small></summary><div class="detail"><ol class="steps">
+          <li><details id="feature-18"><summary><strong>#18 時限暫停／恢復</strong><small>時限詳情裡的暫停表單（寫原因）與恢復鈕；交班中的案件不給暫停。</small></summary><div class="detail"><p class="daily">日常入口：要改對客時間</p><ol class="steps">
               <li>確認有合法等待原因。</li>
               <li>寫原因暫停解決時計。</li>
               <li>可用 Demo 工具「快進 15 分鐘」觀察暫停效果。</li>
@@ -513,7 +526,7 @@ ol.steps { margin: .25rem 0 .2rem; padding-left: 1.3rem; display: grid; gap: .25
 <div class="walk-group">
         <h3>核心 D · 回到現場</h3>
         <ol class="walk">
-          <li><details id="feature-7"><summary><strong>#7 續辦提醒</strong><small>切回案件時自動比對上次離開標記：多了幾則訊息、時計變化、來源更新。</small></summary><div class="detail"><ol class="steps">
+          <li><details id="feature-7"><summary><strong>#7 續辦提醒</strong><small>切回案件時自動比對上次離開標記：多了幾則訊息、時計變化、來源更新。</small></summary><div class="detail"><p class="daily">日常入口：待回覆</p><ol class="steps">
               <li>在 A 案建立離開時的脈絡。</li>
               <li>A→B→C→A 切回 A 案。</li>
               <li>看到提醒，點開看差異。</li>
@@ -524,30 +537,30 @@ ol.steps { margin: .25rem 0 .2rem; padding-left: 1.3rem; display: grid; gap: .25
 <div class="walk-group">
         <h3>核心 E · 安全底線</h3>
         <ol class="walk">
-          <li><details id="feature-20"><summary><strong>#20 玩家來源狀態列</strong><small>來源五種狀態＋連線三態，每種講清楚原因；受限或離線時不硬答。</small></summary><div class="detail"><ol class="steps">
+          <li><details id="feature-20"><summary><strong>#20 玩家來源狀態列</strong><small>來源五種狀態＋連線三態，每種講清楚原因；受限或離線時不硬答。</small></summary><div class="detail"><p class="daily">日常入口：來源現在不能查</p><ol class="steps">
               <li>切換到「來源故障」情境。</li>
               <li>開案即見來源狀態變化。</li>
               <li>改用查證（#13）或等恢復，不硬答。</li>
             </ol></div></details></li>
-          <li><details id="feature-21"><summary><strong>#21 個資遮罩欄位</strong><small>同一欄位依權限五種長相；看到鎖頭可按「請人查證」直達查證流程。</small></summary><div class="detail"><ol class="steps">
+          <li><details id="feature-21"><summary><strong>#21 個資遮罩欄位</strong><small>同一欄位依權限五種長相；看到鎖頭可按「請人查證」直達查證流程。</small></summary><div class="detail"><p class="daily">日常入口：來源現在不能查</p><ol class="steps">
               <li>以摘要權限身分開案。</li>
               <li>找到受限欄位（鎖頭）。</li>
               <li>按「請人查證」進查證流程。</li>
               <li>結果回來帶入草稿。</li>
               <li>再切回明細權限身分對照同一欄位。</li>
             </ol></div></details></li>
-          <li><details id="feature-22"><summary><strong>#22 來源查證工作卡</strong><small>「有明細權限＋已核實＋來源在線」三條件都滿足才出現；條件不符整個不渲染。</small></summary><div class="detail"><ol class="steps">
+          <li><details id="feature-22"><summary><strong>#22 來源查證工作卡</strong><small>「有明細權限＋已核實＋來源在線」三條件都滿足才出現；條件不符整個不渲染。</small></summary><div class="detail"><p class="daily">日常入口：來源現在不能查</p><ol class="steps">
               <li>以明細權限身分開案。</li>
               <li>來源在線時查看進階查證操作。</li>
               <li>切換情境或身分，確認條件不符時卡片不出現。</li>
             </ol></div></details></li>
-          <li><details id="feature-30"><summary><strong>#30 玩家保護橫幅</strong><small>玩家自我排除生效時置頂橫幅；保護中某些回覆被擋下並顯示替代文案。</small></summary><div class="detail"><ol class="steps">
+          <li><details id="feature-30"><summary><strong>#30 玩家保護橫幅</strong><small>玩家自我排除生效時置頂橫幅；保護中某些回覆被擋下並顯示替代文案。</small></summary><div class="detail"><p class="daily">日常入口：保護中</p><ol class="steps">
               <li>在 Demo 工具箱展開「玩家保護（RG）」。</li>
               <li>為合成玩家觸發保護事件並確認生效。</li>
               <li>開該玩家案件，看到橫幅。</li>
               <li>照橫幅指示應對；被擋的回覆改用合規說法。</li>
             </ol></div></details></li>
-          <li><details id="feature-31"><summary><strong>#31 角色權限閘門</strong><small>按角色與工作區決定可用功能；不可用時顯示原因，不靜默消失。</small></summary><div class="detail"><ol class="steps">
+          <li><details id="feature-31"><summary><strong>#31 角色權限閘門</strong><small>按角色與工作區決定可用功能；不可用時顯示原因，不靜默消失。</small></summary><div class="detail"><p class="daily">日常入口：保護中</p><ol class="steps">
               <li>切換到無客服權限的示範身份。</li>
               <li>點到無權功能，看到原因說明。</li>
               <li>改用請教或改派找有權的人。</li>
@@ -557,7 +570,7 @@ ol.steps { margin: .25rem 0 .2rem; padding-left: 1.3rem; display: grid; gap: .25
 <div class="walk-group">
         <h3>群組一 · 內部協作</h3>
         <ol class="walk">
-          <li><details id="feature-12"><summary><strong>#12 內部請教</strong><small>案件上「請教」按鈕；對方回覆後出現未讀數；客戶看不到，不移轉主責。</small></summary><div class="detail"><ol class="steps">
+          <li><details id="feature-12"><summary><strong>#12 內部請教</strong><small>案件上「請教」按鈕；對方回覆後出現未讀數；客戶看不到，不移轉主責。</small></summary><div class="detail"><p class="daily">日常入口：請同事看</p><ol class="steps">
               <li>按「請教」，選對象、寫問題、設回覆期限。</li>
               <li>送出後，另開後台分頁切到受邀同事，在待辦看到「待我處理」。</li>
               <li>對方接受並回覆（可附對客建議）。</li>
@@ -565,7 +578,7 @@ ol.steps { margin: .25rem 0 .2rem; padding-left: 1.3rem; display: grid; gap: .25
               <li>對客建議一鍵帶入草稿，審閱後送出。</li>
               <li>分支：對方可婉拒（寫原因）、我方可取消、可移交新主責。</li>
             </ol></div></details></li>
-          <li><details id="feature-13"><summary><strong>#13 技術查證</strong><small>查證面板：查詢項目、技術隊列、回報期限；結果先核對再帶入草稿。</small></summary><div class="detail"><ol class="steps">
+          <li><details id="feature-13"><summary><strong>#13 技術查證</strong><small>查證面板：查詢項目、技術隊列、回報期限；結果先核對再帶入草稿。</small></summary><div class="detail"><p class="daily">日常入口：來源現在不能查</p><ol class="steps">
               <li>明細權限不足時（或從 #21 鎖頭直達）。</li>
               <li>選查詢項目＋技術隊列＋期限送出。</li>
               <li>在 Demo 工具箱展開「技術群模擬」回報結果。</li>
@@ -577,14 +590,14 @@ ol.steps { margin: .25rem 0 .2rem; padding-left: 1.3rem; display: grid; gap: .25
 <div class="walk-group">
         <h3>群組二 · 主責異動</h3>
         <ol class="walk">
-          <li><details id="feature-14"><summary><strong>#14 交班</strong><small>交班卡：摘要、接班人、接受期限、追蹤期限；對方接受前原主責仍負責。</small></summary><div class="detail"><ol class="steps">
+          <li><details id="feature-14"><summary><strong>#14 交班</strong><small>交班卡：摘要、接班人、接受期限、追蹤期限；對方接受前原主責仍負責。</small></summary><div class="detail"><p class="daily">日常入口：待接受的交班</p><ol class="steps">
               <li>切到「主管交班」情境。</li>
               <li>發起交班：寫摘要、選對象、設接受期限。</li>
               <li>另開後台分頁切到接班人，在待辦接受或退回（寫理由）。</li>
               <li>回到原案對照接受前後的主責顯示。</li>
               <li>原主責或有分派權者可撤回、改派。</li>
             </ol></div></details></li>
-          <li><details id="feature-15"><summary><strong>#15 派單</strong><small>無主案件待接佇列＋系統推薦接單人；主管可直接指定，也可調值班表。</small></summary><div class="detail"><ol class="steps">
+          <li><details id="feature-15"><summary><strong>#15 派單</strong><small>無主案件待接佇列＋系統推薦接單人；主管可直接指定，也可調值班表。</small></summary><div class="detail"><p class="daily">日常入口：誰卡住了</p><ol class="steps">
               <li>以主管身分開啟待接佇列。</li>
               <li>看推薦理由（能中文、當班中、有容量）。</li>
               <li>直接指定接單人。</li>
@@ -595,13 +608,13 @@ ol.steps { margin: .25rem 0 .2rem; padding-left: 1.3rem; display: grid; gap: .25
 <div class="walk-group">
         <h3>群組三 · 知識與模板</h3>
         <ol class="walk">
-          <li><details id="feature-25"><summary><strong>#25 知識庫</strong><small>知識工作區：全文搜尋、狀態篩選；草稿→待覆核→已發布，可退回修訂、可撤回。</small></summary><div class="detail"><ol class="steps">
+          <li><details id="feature-25"><summary><strong>#25 知識庫</strong><small>知識工作區：全文搜尋、狀態篩選；草稿→待覆核→已發布，可退回修訂、可撤回。</small></summary><div class="detail"><p class="daily">日常入口：待回覆</p><ol class="steps">
               <li>開知識工作區。</li>
               <li>搜尋找答案，開文章看內容與版本。</li>
               <li>有權者新增／編輯（走覆核才發布）。</li>
               <li>撤回下架問題版本。</li>
             </ol></div></details></li>
-          <li><details id="feature-24"><summary><strong>#24 知識引用</strong><small>材料面板的「知識與指引」段：引用保留版本掛為案件依據；問題版本會被擋。</small></summary><div class="detail"><ol class="steps">
+          <li><details id="feature-24"><summary><strong>#24 知識引用</strong><small>材料面板的「知識與指引」段：引用保留版本掛為案件依據；問題版本會被擋。</small></summary><div class="detail"><p class="daily">日常入口：待回覆</p><ol class="steps">
               <li>在材料面板搜尋案件知識。</li>
               <li>引用，保留版本掛為依據。</li>
               <li>要轉對客走模板或手寫，不直接張貼內部指引。</li>
@@ -611,7 +624,7 @@ ol.steps { margin: .25rem 0 .2rem; padding-left: 1.3rem; display: grid; gap: .25
 <div class="walk-group">
         <h3>群組四 · AI 助理</h3>
         <ol class="walk">
-          <li><details id="feature-26"><summary><strong>#26 助理（唯讀）</strong><small>摘要、知識查詢、回覆草稿、交班摘要四用途；按「採用」才進草稿，不是寄出。</small></summary><div class="detail"><ol class="steps">
+          <li><details id="feature-26"><summary><strong>#26 助理（唯讀）</strong><small>摘要、知識查詢、回覆草稿、交班摘要四用途；按「採用」才進草稿，不是寄出。</small></summary><div class="detail"><p class="daily">日常入口：待回覆</p><ol class="steps">
               <li>開助理面板，選用途。</li>
               <li>輸問題（知識查詢可選對客／內部）。</li>
               <li>產生後檢視內容與依據。</li>
@@ -622,7 +635,7 @@ ol.steps { margin: .25rem 0 .2rem; padding-left: 1.3rem; display: grid; gap: .25
 <div class="walk-group">
         <h3>群組五 · 客戶補件</h3>
         <ol class="walk">
-          <li><details id="feature-23"><summary><strong>#23 補件請求與繳交</strong><small>客服寫目的發要求（一小時效期）；客戶只看到待補事項＋提供範例鈕。</small></summary><div class="detail"><ol class="steps">
+          <li><details id="feature-23"><summary><strong>#23 補件請求與繳交</strong><small>客服寫目的發要求（一小時效期）；客戶只看到待補事項＋提供範例鈕。</small></summary><div class="detail"><p class="daily">日常入口：請客戶補一件</p><ol class="steps">
               <li>客服側寫目的發補件要求。</li>
               <li>另開用戶端分頁，客戶看到待補事項。</li>
               <li>按「提供範例」繳交（合成範例，不收真實文件）。</li>
@@ -634,13 +647,13 @@ ol.steps { margin: .25rem 0 .2rem; padding-left: 1.3rem; display: grid; gap: .25
 <div class="walk-group">
         <h3>群組六 · 品質與衡量</h3>
         <ol class="walk">
-          <li><details id="feature-27"><summary><strong>#27 品質檢視</strong><small>主管選案開品質工作：三維打分＋評語＋掛證據；被檢視者可申訴。</small></summary><div class="detail"><ol class="steps">
+          <li><details id="feature-27"><summary><strong>#27 品質檢視</strong><small>主管選案開品質工作：三維打分＋評語＋掛證據；被檢視者可申訴。</small></summary><div class="detail"><p class="daily">日常入口：誰卡住了</p><ol class="steps">
               <li>以主管身分選案件。</li>
               <li>打分（正確／清晰／負責感）＋寫評語＋掛證據。</li>
               <li>送出後切到被檢視者查看／申訴。</li>
               <li>教練跟進。</li>
             </ol></div></details></li>
-          <li><details id="feature-19"><summary><strong>#19 時限指標報表</strong><small>各時計達標率（分子／分母）、待辦數、暫停數，可下鑽到案件；依權限顯示。</small></summary><div class="detail"><ol class="steps">
+          <li><details id="feature-19"><summary><strong>#19 時限指標報表</strong><small>各時計達標率（分子／分母）、待辦數、暫停數，可下鑽到案件；依權限顯示。</small></summary><div class="detail"><p class="daily">日常入口：誰卡住了</p><ol class="steps">
               <li>以主管身分開報表。</li>
               <li>看總覽。</li>
               <li>展開某時計，下鑽到具體案件處理。</li>
@@ -650,7 +663,7 @@ ol.steps { margin: .25rem 0 .2rem; padding-left: 1.3rem; display: grid; gap: .25
 <div class="walk-group">
         <h3>群組七 · 事件公告</h3>
         <ol class="walk">
-          <li><details id="feature-28"><summary><strong>#28 事件公告與對客話術</strong><small>影響多案的事件卡：工作區公告＋核准後可用的對客話術、更新時間、進度。</small></summary><div class="detail"><ol class="steps">
+          <li><details id="feature-28"><summary><strong>#28 事件公告與對客話術</strong><small>影響多案的事件卡：工作區公告＋核准後可用的對客話術、更新時間、進度。</small></summary><div class="detail"><p class="daily">日常入口：誰卡住了</p><ol class="steps">
               <li>以主管身分建事件：名稱、服務、供應商、公告、對客話術、更新時間。</li>
               <li>客服看到工作區頂端公告橫幅。</li>
               <li>連結到手頭案件。</li>
@@ -662,14 +675,14 @@ ol.steps { margin: .25rem 0 .2rem; padding-left: 1.3rem; display: grid; gap: .25
 <div class="walk-group">
         <h3>群組八 · 客戶聲音與成長</h3>
         <ol class="walk">
-          <li><details id="feature-29"><summary><strong>#29 客戶評分</strong><small>結案後玩家評：星等＋已解決／仍未解決＋評語；可更新、可撤回。</small></summary><div class="detail"><ol class="steps">
+          <li><details id="feature-29"><summary><strong>#29 客戶評分</strong><small>結案後玩家評：星等＋已解決／仍未解決＋評語；可更新、可撤回。</small></summary><div class="detail"><p class="daily">日常入口：待回覆</p><ol class="steps">
               <li>另開用戶端分頁，選已結案客戶。</li>
               <li>先選解決結果；已解決才出現 1–5 星。</li>
               <li>送出評分與意見。</li>
               <li>客服側看統計與評語；低分案件回頭檢視。</li>
               <li>可更新或撤回，留版本紀錄。</li>
             </ol></div></details></li>
-          <li><details id="feature-32"><summary><strong>#32 新手訓練</strong><small>闖關式教學：首案生命週期→視圖切換→多案草稿隔離→協作→時限認知。</small></summary><div class="detail"><ol class="steps">
+          <li><details id="feature-32"><summary><strong>#32 新手訓練</strong><small>闖關式教學：首案生命週期→視圖切換→多案草稿隔離→協作→時限認知。</small></summary><div class="detail"><p class="daily">日常入口：例外，不屬 8 種工作</p><ol class="steps">
               <li>按下方按鈕開啟 Day-1 訓練。</li>
               <li>選關卡，照步驟在真實介面操作。</li>
               <li>完成。老手可跳關，入口常駐 Demo 工具。</li>
