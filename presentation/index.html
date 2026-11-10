@@ -143,6 +143,9 @@ ol.walk .daily { margin: .35rem 0 0; font-size: .85rem; color: var(--muted) }
 .demo-action { flex-wrap: wrap }
 @media (max-width: 700px) { ol.walk summary { grid-template-columns: minmax(0, 1fr) 1.5rem } ol.walk summary small { grid-column: 1 / -1 } }
 /* /walkthrough:css */
+/* iam:css */
+.iam-overview li { overflow-wrap: anywhere; margin: .5rem 0 }
+/* /iam:css */
 </style>
 </head>
 <body>
@@ -165,6 +168,7 @@ ol.walk .daily { margin: .35rem 0 0; font-size: .85rem; color: var(--muted) }
           <li><a href="#future"><span aria-hidden="true">05</span>何時適合擴大投入？</a></li>
           <li><a href="#demo"><span aria-hidden="true">06</span>現在的 Demo 能看什麼？</a></li>
           <li><a href="#walkthrough"><span aria-hidden="true">07</span>功能走查</a></li>
+      <li><a href="#iam"><span aria-hidden="true">08</span>帳號與權限</a></li>
         </ol>
       </nav>
     </div>
@@ -181,6 +185,7 @@ ol.walk .daily { margin: .35rem 0 0; font-size: .85rem; color: var(--muted) }
       <li><a href="#future"><span aria-hidden="true">05</span>擴展條件</a></li>
       <li><a href="#demo"><span aria-hidden="true">06</span>現有 Demo</a></li>
       <li><a href="#walkthrough"><span aria-hidden="true">07</span>功能走查</a></li>
+      <li><a href="#iam"><span aria-hidden="true">08</span>帳號與權限</a></li>
     </ol>
   </nav>
   <main>
@@ -697,6 +702,44 @@ ol.walk .daily { margin: .35rem 0 0; font-size: .85rem; color: var(--muted) }
       <p class="bridge"><a href="#demo">回看這筆提款詢問的主線走法。</a></p>
     </section>
 <!-- /walkthrough:chapter -->
+<!-- iam:chapter -->
+    <section class="chapter iam-overview" id="iam" aria-labelledby="iam-title">
+      <div class="chapter-title"><span aria-hidden="true">08</span><h2 id="iam-title">帳號與權限系統</h2></div>
+      <p class="lead">誰能登入、誰能看什麼、來源資料為何要另外授權：合成示範說明，不證明正式安全。</p>
+      <div class="demo-action">
+        <a class="button" href="#demo">回 Demo 看登入演示</a>
+        <span>Demo 工具箱 → 登入演示，三種登入與授權狀態可互動。</span>
+      </div>
+      <details><summary>登入方式</summary><div class="detail"><ul>            <li>PRX 帳號：選工作區成員直接進入，標示 PRX Native，不需 NGSS3 身份。</li>
+            <li>NGSS3 登入：模擬跳轉由 NGSS3 驗身份後映射 PRX 成員；不收密碼，SSO 成功不等於來源可讀。</li>
+            <li>混合：同一內部身份可綁 Native 與外部 OIDC；Email 相同不自動合併，需重新驗證綁定。</li></ul></div></details>
+      <details><summary>身份與授權分離</summary><div class="detail"><ul>            <li>登入成功只決定工作區成員資格，不直接給來源資料權。</li>
+            <li>來源資料可讀＝PRX 角色×案件×已核驗綁定×欄位，與來源 Grant（ACTIVE＋版次）取交集。</li>
+            <li>PRX-only 客服無 NGSS3 帳號也能在交集成立時查詢；管理員 JWT 永不共用。</li></ul></div></details>
+      <details><summary>判定順序</summary><div class="detail"><ul>            <li>Session → Membership → Workspace → 案件關聯＋已核驗綁定 → 角色範圍 → 欄位交集 → Grant 狀態／版次 → 租戶／連線／用途 → 重播與服務身份 → Gateway 健康 → 欄位投影。</li>
+            <li>任一步失敗即 fail-closed；PENDING 不可讀，離線顯示來源暫不可查而非拒絕。</li></ul></div></details>
+      <details><summary>Grant 狀態</summary><div class="detail"><ul>            <li>PENDING_SOURCE：待來源有權者核准，不可查詢。</li>
+            <li>ACTIVE：版次一致才可讀；舊版次、新查詢一律重驗。</li>
+            <li>PAUSED：暫停中新查詢拒絕，本地案件保留。</li>
+            <li>REVOKED：已撤銷需全新合法核准，舊投影清除。</li>
+            <li>EXPIRED：到期後需重新申請。</li></ul></div></details>
+      <details><summary>拒絕與下一步</summary><div class="detail"><ul>            <li>來源資料尚待核准：開授權詳情等來源核准，不查詢。</li>
+            <li>資料來源暫時無法查詢：保留本地工作稍後重試，不以舊快照當即時證據。</li>
+            <li>目前角色不能查看：請主管依程序調整範圍。</li>
+            <li>目前授權不包含此欄位：需擴權審批，不顯示敏感值；金額永不進請求、回應與 DOM。</li>
+            <li>來源存取已撤銷：禁重試，需全新核准。</li>
+            <li>尚未確認案件會員身份：走合法綁定驗證，不用姓名或通訊 ID 猜測。</li></ul></div></details>
+      <details><summary>架構</summary><div class="detail"><ul>            <li>身份橋接：NGSS3 SSO → PRX 成員映射。</li>
+            <li>資料讀取：PRX 政策 ∩ 來源 Grant → 模擬 Gateway 欄位投影。</li>
+            <li>兩條路徑分開驗證；前端不直連來源，查詢只走後端可信案件綁定。</li></ul></div></details>
+      <div class="disclosures">
+        <details><summary>範圍與限制</summary><div class="detail">
+          <p>本章為合成 Demo 說明：登入、角色、Grant 皆為模擬；未連真實 NGSS3，未收密碼，不證明正式身份或授權安全。</p>
+        </div></details>
+      </div>
+      <p class="bridge"><a href="#walkthrough">接著依清單，逐項走查 Demo 功能。</a></p>
+    </section>
+<!-- /iam:chapter -->
   </main>
 </div>
 <footer class="frame footer"><span>PRX 產品設計與體驗 Demo　2026 年 11 月 3 日</span><a href="./guide.html">產品與整合指南</a><a href="#top">回到開頭</a></footer>
