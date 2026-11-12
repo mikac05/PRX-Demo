@@ -145,6 +145,24 @@ ol.walk .daily { margin: .35rem 0 0; font-size: .85rem; color: var(--muted) }
 /* /walkthrough:css */
 /* iam:css */
 .iam-overview li { overflow-wrap: anywhere; margin: .5rem 0 }
+.iam-overview .iam-subhead { margin: 2rem 0 .8rem }
+.iam-overview .iam-identities { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: .9rem }
+.iam-overview .iam-identities > li { margin: 0 }
+.iam-overview .iam-card { border: 1px solid var(--rule); border-radius: 8px; background: var(--white); padding: 1rem 1.1rem }
+.iam-overview .iam-card h4 { margin: 0 0 .3rem; font-size: 1rem }
+.iam-overview .iam-card .iam-can { margin: 0 0 .5rem; color: var(--muted); font-size: .94rem }
+.iam-overview .iam-card ol { margin: .2rem 0 .5rem; padding-left: 1.25rem; display: grid; gap: .3rem; font-size: .94rem }
+.iam-overview .iam-card .iam-denied { margin: 0; font-size: .9rem; color: var(--muted) }
+.iam-overview .iam-diagram { margin: 1.4rem 0 0; overflow-x: auto }
+.iam-overview .iam-diagram svg { min-width: 560px }
+.iam-overview .iam-legend { list-style: none; display: flex; flex-wrap: wrap; gap: .4rem 1.2rem; margin: .8rem 0 0; padding: 0; font-size: .9rem; color: var(--muted) }
+.iam-overview .iam-legend > li { margin: 0; display: flex; align-items: center; gap: .45rem }
+.iam-overview .swatch { display: inline-block; width: 1.6rem; height: 0; border-top: 3px solid var(--accent) }
+.iam-overview .swatch.read { border-color: var(--link) }
+.iam-overview .swatch.deny { border-top-style: dashed; border-color: #be123c }
+.iam-overview .rows h4 { margin: 0 0 .3rem; font-size: 1rem }
+.iam-overview .comparison td, .iam-overview .comparison th { overflow-wrap: anywhere }
+@media (max-width: 700px) { .iam-overview .rows { grid-template-columns: 1fr } .iam-overview .rows div + div { border-left: none; border-top: 1px solid var(--rule) } }
 /* /iam:css */
 </style>
 </head>
@@ -705,39 +723,178 @@ ol.walk .daily { margin: .35rem 0 0; font-size: .85rem; color: var(--muted) }
 <!-- iam:chapter -->
     <section class="chapter iam-overview" id="iam" aria-labelledby="iam-title">
       <div class="chapter-title"><span aria-hidden="true">08</span><h2 id="iam-title">帳號與權限系統</h2></div>
-      <p class="lead">誰能登入、誰能看什麼、來源資料為何要另外授權：合成示範說明，不證明正式安全。</p>
+      <p class="lead">登入只回答「你是誰」；能不能看來源資料，每查一次算一次：你的角色 × 手上的案件 × 來源 Grant（要 ACTIVE、版次也要對），三關全過才放行。</p>
       <div class="demo-action">
         <a class="button" href="#demo">回 Demo 看登入演示</a>
-        <span>Demo 工具箱 → 登入演示，三種登入與授權狀態可互動。</span>
+        <span>去 Demo 玩玩看：三種登入、授權狀態隨你切。</span>
       </div>
-      <details><summary>登入方式</summary><div class="detail"><ul>            <li>PRX 帳號：選工作區成員直接進入，標示 PRX Native，不需 NGSS3 身份。</li>
-            <li>NGSS3 登入：模擬跳轉由 NGSS3 驗身份後映射 PRX 成員；不收密碼，SSO 成功不等於來源可讀。</li>
-            <li>混合：同一內部身份可綁 Native 與外部 OIDC；Email 相同不自動合併，需重新驗證綁定。</li></ul></div></details>
-      <details><summary>身份與授權分離</summary><div class="detail"><ul>            <li>登入成功只決定工作區成員資格，不直接給來源資料權。</li>
-            <li>來源資料可讀＝PRX 角色×案件×已核驗綁定×欄位，與來源 Grant（ACTIVE＋版次）取交集。</li>
-            <li>PRX-only 客服無 NGSS3 帳號也能在交集成立時查詢；管理員 JWT 永不共用。</li></ul></div></details>
-      <details><summary>判定順序</summary><div class="detail"><ul>            <li>Session → Membership → Workspace → 案件關聯＋已核驗綁定 → 角色範圍 → 欄位交集 → Grant 狀態／版次 → 租戶／連線／用途 → 重播與服務身份 → Gateway 健康 → 欄位投影。</li>
-            <li>任一步失敗即 fail-closed；PENDING 不可讀，離線顯示來源暫不可查而非拒絕。</li></ul></div></details>
-      <details><summary>Grant 狀態</summary><div class="detail"><ul>            <li>PENDING_SOURCE：待來源有權者核准，不可查詢。</li>
-            <li>ACTIVE：版次一致才可讀；舊版次、新查詢一律重驗。</li>
-            <li>PAUSED：暫停中新查詢拒絕，本地案件保留。</li>
-            <li>REVOKED：已撤銷需全新合法核准，舊投影清除。</li>
-            <li>EXPIRED：到期後需重新申請。</li></ul></div></details>
-      <details><summary>拒絕與下一步</summary><div class="detail"><ul>            <li>來源資料尚待核准：開授權詳情等來源核准，不查詢。</li>
-            <li>資料來源暫時無法查詢：保留本地工作稍後重試，不以舊快照當即時證據。</li>
-            <li>目前角色不能查看：請主管依程序調整範圍。</li>
-            <li>目前授權不包含此欄位：需擴權審批，不顯示敏感值；金額永不進請求、回應與 DOM。</li>
-            <li>來源存取已撤銷：禁重試，需全新核准。</li>
-            <li>尚未確認案件會員身份：走合法綁定驗證，不用姓名或通訊 ID 猜測。</li></ul></div></details>
-      <details><summary>架構</summary><div class="detail"><ul>            <li>身份橋接：NGSS3 SSO → PRX 成員映射。</li>
-            <li>資料讀取：PRX 政策 ∩ 來源 Grant → 模擬 Gateway 欄位投影。</li>
-            <li>兩條路徑分開驗證；前端不直連來源，查詢只走後端可信案件綁定。</li></ul></div></details>
+      <figure class="figure iam-diagram">
+        <svg viewBox="0 0 960 500" role="img" aria-labelledby="iam-diagram-title iam-diagram-desc">
+          <title id="iam-diagram-title">帳號與權限雙路徑架構圖</title>
+          <desc id="iam-diagram-desc">報到這條路：從使用者經模擬 SSO 對到 PRX 成員；查資料這條路：政策跟來源 Grant 都點頭，才經模擬 Gateway 吐出你能看的欄位；管理員的 JWT 誰都不借；前端不直連來源。</desc>
+          <defs>
+            <marker id="iam-arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="#5d5670" />
+            </marker>
+            <marker id="iam-arrow-bridge" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="#6045df" />
+            </marker>
+            <marker id="iam-arrow-read" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="#4930ba" />
+            </marker>
+            <pattern id="iam-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#e3ddf2" stroke-width="1" />
+            </pattern>
+          </defs>
+          <rect width="960" height="500" fill="url(#iam-grid)" />
+          <line x1="140" y1="216" x2="235" y2="140" stroke="#6045df" stroke-width="2" marker-end="url(#iam-arrow-bridge)" />
+          <text x="178" y="170" class="edge-label" text-anchor="middle">跳過去驗</text>
+          <line x1="402" y1="114" x2="448" y2="114" stroke="#6045df" stroke-width="2" marker-end="url(#iam-arrow-bridge)" />
+          <text x="425" y="106" class="edge-label" text-anchor="middle">對到人</text>
+          <line x1="140" y1="280" x2="235" y2="320" stroke="#4930ba" stroke-width="2" marker-end="url(#iam-arrow-read)" />
+          <text x="178" y="306" class="edge-label" text-anchor="middle">直接進</text>
+          <line x1="500" y1="148" x2="380" y2="298" stroke="#4930ba" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#iam-arrow-read)" />
+          <text x="452" y="222" class="edge-label" text-anchor="middle">範圍＋綁定</text>
+          <line x1="402" y1="340" x2="448" y2="340" stroke="#4930ba" stroke-width="2" marker-end="url(#iam-arrow-read)" />
+          <text x="425" y="332" class="edge-label" text-anchor="middle">兩邊都點頭</text>
+          <line x1="640" y1="340" x2="686" y2="340" stroke="#4930ba" stroke-width="2" marker-end="url(#iam-arrow-read)" />
+          <rect x="24" y="216" width="140" height="64" rx="8" class="node" />
+          <text x="94" y="242" class="name" text-anchor="middle">使用者</text>
+          <text x="94" y="264" class="sub" text-anchor="middle">瀏覽器操作</text>
+          <rect x="212" y="80" width="190" height="68" rx="8" class="node" />
+          <text x="307" y="106" class="name" text-anchor="middle">模擬 SSO</text>
+          <text x="307" y="128" class="sub" text-anchor="middle">驗身份不收密碼</text>
+          <rect x="450" y="80" width="190" height="68" rx="8" class="focus-node" />
+          <text x="545" y="106" class="name" text-anchor="middle">成員映射</text>
+          <text x="545" y="128" class="sub" text-anchor="middle">工作區成員資格</text>
+          <rect x="688" y="80" width="190" height="68" rx="8" fill="#ffffff" stroke="#be123c" stroke-width="2" stroke-dasharray="6 4" />
+          <text x="783" y="106" class="name" text-anchor="middle">管理員 JWT</text>
+          <text x="783" y="128" class="sub" text-anchor="middle">誰都不借</text>
+          <rect x="212" y="300" width="190" height="80" rx="8" class="focus-node" />
+          <text x="307" y="326" class="name" text-anchor="middle">政策交集</text>
+          <text x="307" y="348" class="sub" text-anchor="middle">角色×案件×欄位</text>
+          <rect x="450" y="300" width="190" height="80" rx="8" class="node" />
+          <text x="545" y="326" class="name" text-anchor="middle">來源 Grant</text>
+          <text x="545" y="348" class="sub" text-anchor="middle">ACTIVE＋版次</text>
+          <rect x="688" y="300" width="190" height="80" rx="8" class="node" />
+          <text x="783" y="326" class="name" text-anchor="middle">模擬 Gateway</text>
+          <text x="783" y="348" class="sub" text-anchor="middle">只吐能看的</text>
+          <text x="480" y="428" class="edge-label" text-anchor="middle">登入成功 ≠ 看得到；一關沒過就擋下；前端不直連來源。</text>
+          <line x1="300" y1="462" x2="340" y2="462" stroke="#6045df" stroke-width="3" />
+          <text x="348" y="467" class="edge-label">報到這條路</text>
+          <line x1="480" y1="462" x2="520" y2="462" stroke="#4930ba" stroke-width="3" />
+          <text x="528" y="467" class="edge-label">查資料這條路</text>
+          <line x1="660" y1="462" x2="700" y2="462" stroke="#be123c" stroke-width="3" stroke-dasharray="6 4" />
+          <text x="708" y="467" class="edge-label">JWT 誰都不借</text>
+        </svg>
+        <figcaption>兩條路分開走：紫色管報到（你是誰），深紫管查資料（能不能看——政策跟 Grant 都要點頭）；登入成功不代表看得到；管理員的 JWT 誰都不借。</figcaption>
+      </figure>
+      <ul class="iam-legend">
+        <li><span class="swatch" aria-hidden="true"></span>報到這條路</li>
+        <li><span class="swatch read" aria-hidden="true"></span>查資料這條路</li>
+        <li><span class="swatch deny" aria-hidden="true"></span>JWT 誰都不借</li>
+      </ul>
+<h3 class="iam-subhead">五種人，對號入座：找到自己，照三步走</h3>
+      <ul class="iam-identities">
+        <li class="iam-card">
+          <h4>PRX-only 客服</h4>
+          <p class="iam-can">不用 NGSS3 帳號，直接選人進來開工。</p>
+          <ol>
+            <li>進工作區點自己，直接開工（掛 PRX Native）。</li>
+            <li>要查來源資料前，先看 Grant 是不是 ACTIVE、版次對不對。</li>
+            <li>被擋下來就去看授權進度等核准，別拿舊資料當證據。</li>
+          </ol>
+          <p class="iam-denied">被擋住？去下表找「來源還沒點頭」那一列。</p>
+        </li>
+        <li class="iam-card">
+          <h4>客服主管</h4>
+          <p class="iam-can">管自己範圍內的核准跟轉派，不碰來源那端的審批。</p>
+          <ol>
+            <li>先看這筆查詢是不是落在你的範圍跟案件裡。</li>
+            <li>照流程核准或轉出去，來源的 Grant 不歸你批。</li>
+            <li>被擋就調範圍，別去找來源核准人。</li>
+          </ol>
+          <p class="iam-denied">被擋住？去下表找「你的角色不能看」那一列。</p>
+        </li>
+        <li class="iam-card">
+          <h4>包網商／組織管理員</h4>
+          <p class="iam-can">負責開通跟交代事情，只看得到目錄，看不到信件內容。</p>
+          <ol>
+            <li>在你的管區裡開通、交代，別點案件正文。</li>
+            <li>真的要看內容就走申請，別想繞過。</li>
+            <li>不小心點到正文被擋，就去看欄位沒開那一列。</li>
+          </ol>
+          <p class="iam-denied">被擋住？去下表找「這個欄位沒開給你」那一列。</p>
+        </li>
+        <li class="iam-card">
+          <h4>NGSS3 員工</h4>
+          <p class="iam-can">從 NGSS3 跳過來，系統幫你對到 PRX 身分；登入成功不代表看得到來源。</p>
+          <ol>
+            <li>走模擬 SSO 進來，系統幫你對到 PRX 成員。</li>
+            <li>能不能看來源，還要再過政策跟 Grant 那一關。</li>
+            <li>還在等核准（PENDING）或版次不對就等，別一直重刷。</li>
+          </ol>
+          <p class="iam-denied">被擋住？去下表找「來源還沒點頭」那一列。</p>
+        </li>
+        <li class="iam-card">
+          <h4>平台營運</h4>
+          <p class="iam-can">只看租戶的開通狀態跟目錄，不進案件。</p>
+          <ol>
+            <li>待在租戶那層，看開通跟目錄就好。</li>
+            <li>案件連結不要點，內容跟你無關。</li>
+            <li>有案件問題就丟回客服主線。</li>
+          </ol>
+          <p class="iam-denied">被擋住？去下表找「這個欄位沒開給你」那一列。</p>
+        </li>
+      </ul>
+<h3 class="iam-subhead">同一件事，三種場地差在哪</h3>
+      <div class="rows">
+        <div><h4>合成 Demo</h4><p>全部假資料（NG-MOCK），Grant 是假的核准人批的，隨便玩。</p></div>
+        <div><h4>staging（要申請才進得去）</h4><p>來真的：Grant 跟撤權都算數，想進先申請，憑證自己收好。</p></div>
+        <div><h4>正式</h4><p>上線速度、合不合法、資料放哪一區，都還沒人保證，這一章不背書。</p></div>
+      </div>
+<h3 class="iam-subhead">被擋住別慌：看這張表，找對人</h3>
+      <table class="comparison">
+        <thead><tr><th scope="col">被拒原因</th><th scope="col">下一步</th><th scope="col">找誰</th></tr></thead>
+        <tbody>
+          <tr><td>來源還沒點頭</td><td>去看授權進度，乖乖等核准，先別查</td><td>來源核准人</td></tr>
+          <tr><td>來源現在連不上</td><td>手邊的事先做，晚點再試；別拿舊資料當即時證據</td><td>晚點再試，不用找人</td></tr>
+          <tr><td>你的角色不能看</td><td>找主管照流程調範圍</td><td>客服主管</td></tr>
+          <tr><td>這個欄位沒開給你</td><td>走加開申請；金額不會出現在畫面跟紀錄裡</td><td>來源核准人＋主管</td></tr>
+          <tr><td>來源授權被收回了</td><td>不要重試，全部重走一次申請</td><td>來源核准人（重新申請）</td></tr>
+          <tr><td>還沒確認這是誰的案子</td><td>走合法綁定流程，別用名字或通訊帳號亂猜</td><td>客服主線</td></tr>
+        </tbody>
+      </table>
+<h3 class="iam-subhead">想挖更深？進階說明在這裡</h3>
+      <details><summary>怎麼進來</summary><div class="detail"><ul>            <li>PRX 帳號：點人頭直接進來，掛 PRX Native，不用 NGSS3。</li>
+            <li>NGSS3 登入：跳過去驗完身分再跳回來；不收密碼，登入成功不代表看得到來源。</li>
+            <li>兩個都綁：同一個人可以兩邊都綁，信箱一樣也不會自動合併，要重驗一次。</li></ul></div></details>
+      <details><summary>報到跟查資料是兩回事</summary><div class="detail"><ul>            <li>登入只幫你報到，沒發來源資料的門票。</li>
+            <li>要看來源：你的角色 × 手上案件 × 綁定過的身分 × 欄位，再跟來源 Grant（ACTIVE＋版次）對一次，全部通過才放行。</li>
+            <li>PRX-only 客服沒 NGSS3 也照這套玩；管理員的 JWT 誰都不借。</li></ul></div></details>
+      <details><summary>檢查的順序：誰先誰後</summary><div class="detail"><ul>            <li>先驗你是誰（Session → 成員 → 工作區），再看案子跟綁定對不對，接著看角色、欄位、Grant 版次，最後看租戶、連線跟 Gateway 健不健康。</li>
+            <li>任何一關沒過就擋下來；還在等核准（PENDING）不能看，斷線就顯示連不上，不會誤判成被拒絕。</li></ul></div></details>
+      <details><summary>授權現在是什麼狀態</summary><div class="detail"><ul>            <li>還在等（PENDING_SOURCE）：來源還沒點頭，不能查。</li>
+            <li>可以用（ACTIVE）：版次對得上才能看，舊版次、新查詢都要重驗。</li>
+            <li>暫停（PAUSED）：新的先擋下來，手上的案子留著。</li>
+            <li>收回（REVOKED）：授權被收走，想看就全部重來，舊資料清掉。</li>
+            <li>過期（EXPIRED）：時間到了，重新申請。</li></ul></div></details>
+      <details><summary>被擋了怎麼辦</summary><div class="detail"><ul>            <li>來源還沒點頭：去看授權進度等核准，先別查。</li>
+            <li>來源連不上：手邊的事先做，晚點再試，別拿舊資料當證據。</li>
+            <li>你的角色不能看：找主管照流程調範圍。</li>
+            <li>這個欄位沒開：走加開申請，金額不會出現在畫面跟紀錄裡。</li>
+            <li>授權被收回：別重試，全部重走一次申請。</li>
+            <li>還沒確認是誰的案子：走合法綁定，別用名字或通訊帳號亂猜。</li></ul></div></details>
+      <details><summary>兩條路長這樣</summary><div class="detail"><ul>            <li>報到這條路：NGSS3 驗完 → 對到 PRX 成員。</li>
+            <li>查資料這條路：PRX 政策跟來源 Grant 都點頭 → 模擬 Gateway 只吐你能看的欄位。</li>
+            <li>兩條路分開驗；前端不直接碰來源，查詢一定走後端認過的案子。</li></ul></div></details>
       <div class="disclosures">
         <details><summary>範圍與限制</summary><div class="detail">
           <p>本章為合成 Demo 說明：登入、角色、Grant 皆為模擬；未連真實 NGSS3，未收密碼，不證明正式身份或授權安全。</p>
+          <p>正式環境的 SLO、合法性、資料區域另行確認，本章不承諾；staging 需人類另行授權才進入。</p>
         </div></details>
       </div>
-      <p class="bridge"><a href="#walkthrough">接著依清單，逐項走查 Demo 功能。</a></p>
+      <p class="bridge"><a href="#walkthrough">下一站：照清單一項一項走。</a></p>
     </section>
 <!-- /iam:chapter -->
   </main>
