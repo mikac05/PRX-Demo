@@ -1,13 +1,14 @@
 {
-  "source_commit": "20f3df48f9ac496cf234124aaa9f8be9bf573113",
+  "source_commit": "235c9cf90676d61c721b22cb11e89478d63eb3bb",
+  "dirty": false,
   "base": "/PRX-Demo/",
-  "presentation_sha256": "fd0251c48cec242d47b42feed0818757f8dea8ca06dfc9a146fd706b32ea8c1c",
-  "presentation_guide_sha256": "6e2d013a1100fce50810d2de41483304f2399865dd305cd3125e9db400107993",
-  "kind": "synthetic-frontend-prototype",
+  "kind": "pages",
   "files": {
-    "assets/index-Cwbuz0PB.css": "e51dcf75440a2075a328ddbf98d2a3e6a70061b2d8f5c64fb1f63abcda5394ec",
-    "assets/index-DGrGzHAN.js": "86c498fb510b5bf960c6e19068f8afdf2e1494e10a147445685c47a27e66f1c2",
-    "index.html": "988c2e2fb05c8931b0c8cf940bda0667eff5aa83119994ed2bfa7045ad35525e",
+    ".gitattributes": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992",
+    ".nojekyll": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "assets/index-B4UBdzF-.js": "0eb1dfe46ce8b243e7415b1a60d5e4e954ec0bded2dca0a5ab7f934d4a641495",
+    "assets/index-B62TdKqO.css": "d5e08586e7e13f09d1a57d8b5de7bab7777a942b6c265cafd84493a3a3d97cf5",
+    "index.html": "4fceea9c42e94910c7c3d0f4e220974ab29ebbdcef38117dca75dbb760187820",
     "legacy-experience/assets/home-green-black/game-dragons-rivalry.png": "eb48ff9e56edf2d273d5f1231cf3dac72e12eadb5e5b167b83eb3a817b074b72",
     "legacy-experience/assets/home-green-black/game-fortune-wild.png": "4a1d2219191aee967bbcab952795e4ba1b339c9d2e1ef00652423b1d4aabc7ec",
     "legacy-experience/assets/home-green-black/game-pussy-castle.png": "2de4066cdd4c96ea4a90f4189624633ea3f92960536c4e667ee403d4fe95258a",
@@ -116,6 +117,9 @@
     "legacy-experience/player-pages.css": "979fcf4c5ab99c0c759d4fd7bcc6e658f12fbf57ac35e802a31c54f57e579b56",
     "legacy-experience/player-pages.js": "3c430a16455c24a0b73b5b5bf07e9f333f5fab6f655bba5c1599e049c04f668c",
     "legacy-experience/player-preview.js": "d4280a87aa593b04c031cb4256ff4f8c4b2bb87f092c6971215b9fb46d5342ef",
-    "legacy-experience/selection-guard.js": "91bed3cf664395f7b6d12d5fbc52c79360158b94f9bce12bbe070e7772e3a83c"
+    "legacy-experience/selection-guard.js": "91bed3cf664395f7b6d12d5fbc52c79360158b94f9bce12bbe070e7772e3a83c",
+    "presentation/guide.html": "6e2d013a1100fce50810d2de41483304f2399865dd305cd3125e9db400107993",
+    "presentation/index.html": "fd0251c48cec242d47b42feed0818757f8dea8ca06dfc9a146fd706b32ea8c1c",
+    "README.md": "e16c871e1e09324b0e38669df3e842de921aada5822693ce4a8d6cc452e73561"
   }
 }
