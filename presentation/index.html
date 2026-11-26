@@ -117,7 +117,36 @@ summary:hover { background:var(--tint) }
 .gates .detail { margin-left:2.6rem }
 .demo-action { display:flex; gap:1rem; align-items:center; margin-top:1.5rem }
 .demo-action span { font-size:.93rem; color:var(--muted) }
-.footer { display:flex; justify-content:space-between; gap:1rem; padding:1.7rem 0 2rem; color:var(--muted); font-size:.9rem }
+.footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:.5rem 1rem; padding:1.7rem 0 2rem; color:var(--muted); font-size:.9rem }
+.pan { overflow-x:auto; overscroll-behavior-x:contain }
+.pan:focus-visible { outline-offset:-3px }
+.figure .pan svg { min-width:640px }
+.pan > .comparison { min-width:34rem }
+/* edge shadows appear only while table columns are scrolled out of view */
+.pan:has(> .comparison) { background:
+  linear-gradient(to right, var(--paper) 30%, rgb(246 245 251 / 0)) left / 2.5rem 100% no-repeat local,
+  linear-gradient(to left, var(--paper) 30%, rgb(246 245 251 / 0)) right / 2.5rem 100% no-repeat local,
+  radial-gradient(farthest-side at 0 50%, rgb(36 33 55 / .2), rgb(36 33 55 / 0)) left / .8rem 100% no-repeat scroll,
+  radial-gradient(farthest-side at 100% 50%, rgb(36 33 55 / .2), rgb(36 33 55 / 0)) right / .8rem 100% no-repeat scroll }
+@media (max-width: 900px) {
+  .frame { width:calc(100% - 40px) }
+  .mast-inner { flex-wrap:wrap; row-gap:.4rem; padding-block:.7rem }
+  .hero { grid-template-columns:minmax(0,1fr); gap:2.5rem; padding:2.75rem 0 3rem }
+  .layout { display:block }
+  .index { display:none }
+  .chapter { padding:2.75rem 0 }
+}
+@media (max-width: 700px) {
+  .rows { grid-template-columns:minmax(0,1fr) }
+  .rows div + div { border-left:none; border-top:1px solid var(--rule) }
+}
+@media (max-width: 560px) {
+  .example { padding:1.1rem 1.15rem }
+  .example blockquote { font-size:1.3rem }
+  .gates summary { grid-template-columns:2rem minmax(0,1fr) 1.5rem }
+  .gates summary small { grid-column:2 / 3 }
+  .gates .detail { margin-left:0 }
+}
 @media print {
   .frame { width:100% }
   .index,.hero-map,.choices,.bridge,.skip,.button { display:none!important }
@@ -146,15 +175,14 @@ ol.walk .daily { margin: .35rem 0 0; font-size: .85rem; color: var(--muted) }
 /* iam:css */
 .iam-overview li { overflow-wrap: anywhere; margin: .5rem 0 }
 .iam-overview .iam-subhead { margin: 2rem 0 .8rem }
-.iam-overview .iam-identities { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: .9rem }
+.iam-overview .iam-identities { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: .9rem }
 .iam-overview .iam-identities > li { margin: 0 }
 .iam-overview .iam-card { border: 1px solid var(--rule); border-radius: 8px; background: var(--white); padding: 1rem 1.1rem }
 .iam-overview .iam-card h4 { margin: 0 0 .3rem; font-size: 1rem }
 .iam-overview .iam-card .iam-can { margin: 0 0 .5rem; color: var(--muted); font-size: .94rem }
 .iam-overview .iam-card ol { margin: .2rem 0 .5rem; padding-left: 1.25rem; display: grid; gap: .3rem; font-size: .94rem }
 .iam-overview .iam-card .iam-denied { margin: 0; font-size: .9rem; color: var(--muted) }
-.iam-overview .iam-diagram { margin: 1.4rem 0 0; overflow-x: auto }
-.iam-overview .iam-diagram svg { min-width: 560px }
+.iam-overview .iam-diagram { margin: 1.4rem 0 0 }
 .iam-overview .iam-legend { list-style: none; display: flex; flex-wrap: wrap; gap: .4rem 1.2rem; margin: .8rem 0 0; padding: 0; font-size: .9rem; color: var(--muted) }
 .iam-overview .iam-legend > li { margin: 0; display: flex; align-items: center; gap: .45rem }
 .iam-overview .swatch { display: inline-block; width: 1.6rem; height: 0; border-top: 3px solid var(--accent) }
@@ -162,7 +190,6 @@ ol.walk .daily { margin: .35rem 0 0; font-size: .85rem; color: var(--muted) }
 .iam-overview .swatch.deny { border-top-style: dashed; border-color: #be123c }
 .iam-overview .rows h4 { margin: 0 0 .3rem; font-size: 1rem }
 .iam-overview .comparison td, .iam-overview .comparison th { overflow-wrap: anywhere }
-@media (max-width: 700px) { .iam-overview .rows { grid-template-columns: 1fr } .iam-overview .rows div + div { border-left: none; border-top: 1px solid var(--rule) } }
 /* /iam:css */
 </style>
 </head>
@@ -238,6 +265,7 @@ ol.walk .daily { margin: .35rem 0 0; font-size: .85rem; color: var(--muted) }
       </div>
       <div class="disclosures">
         <details id="topic-routes"><summary>比較三種交付與銷售方式</summary><div class="detail">
+          <div class="pan" data-pan-label="三種交付與銷售方式比較表">
           <table class="comparison">
             <thead><tr><th scope="col">方式</th><th scope="col">什麼情況適合</th><th scope="col">要付出的代價</th></tr></thead>
             <tbody>
@@ -246,6 +274,7 @@ ol.walk .daily { margin: .35rem 0 0; font-size: .85rem; color: var(--muted) }
               <tr><th scope="row">供應部分能力</th><td>營運商保留既有客服系統，只需要查證或協作。</td><td>要約定案件以哪個系統為準，以及回寫、衝突與撤權由誰處理。</td></tr>
             </tbody>
           </table>
+          </div>
         </div></details>
         <details id="topic-pricing"><summary>試點要算哪些成本與成果？</summary><div class="detail">
           <p>對照導入前後的單案人工時間、重開率與承諾達成。每個工作區再核算獲客、開通、來源適配、訊息、AI、支援與分潤，並記錄付費及續約意向。</p>
@@ -260,6 +289,7 @@ ol.walk .daily { margin: .35rem 0 0; font-size: .85rem; color: var(--muted) }
       <div class="chapter-title"><span aria-hidden="true">03</span><h2 id="product-title">入口可以不同，案件責任要一致</h2></div>
       <p class="lead">客服在 PRX 管案件、交班和對客承諾。會員及交易以業務來源為準，訊息管道另行回報投遞結果。提款進度、送達與結案因此能各自追蹤。</p>
       <figure class="figure">
+        <div class="pan" data-pan-label="產品責任分界圖">
         <svg viewBox="0 0 960 344" role="img" aria-labelledby="arch-title arch-desc">
           <title id="arch-title">PRX 產品責任分界</title>
           <desc id="arch-desc">左側的獨立工作台或候選嵌入入口操作中間的 PRX 案件。右上業務來源提供唯讀證據，右下訊息管道提供收件與回執。</desc>
@@ -284,6 +314,7 @@ ol.walk .daily { margin: .35rem 0 0; font-size: .85rem; color: var(--muted) }
           <text class="edge-label" x="606" y="78">唯讀證據</text>
           <path class="edge edge-optional" d="M42 318 H72"/><text class="edge-label" x="84" y="323">後續入口提案</text>
         </svg>
+        </div>
         <figcaption>目標架構。工作區與案件權限由 PRX 驗證，來源與管道各自授權。轉售或集團管理身分不會自動取得案件內容。</figcaption>
       </figure>
       <section class="switcher" id="topic-data-ownership" data-switcher aria-labelledby="status-title">
@@ -321,6 +352,7 @@ ol.walk .daily { margin: .35rem 0 0; font-size: .85rem; color: var(--muted) }
       <div class="chapter-title"><span aria-hidden="true">04</span><h2 id="ngss3-title">從 NGSS3 查一筆資料，走完一件案</h2></div>
       <p class="lead">以第一個預期來源 NGSS3 建立可重用的接入驗收方式。先選一個測試工作區、一名客服和一種唯讀查詢，把身分、資料與責任逐一驗清楚。</p>
       <figure class="figure">
+        <div class="pan" data-pan-label="NGSS3 首接流程圖">
         <svg viewBox="0 0 960 204" role="img" aria-labelledby="start-title start-desc">
           <title id="start-title">NGSS3 首接的正常路徑提案</title>
           <desc id="start-desc">先從 NGSS3 進入 PRX，驗證員工的工作區與案件權限，再唯讀查證提款狀態，最後在 PRX 留下主責、回覆和追問。</desc>
@@ -339,6 +371,7 @@ ol.walk .daily { margin: .35rem 0 0; font-size: .85rem; color: var(--muted) }
             <text class="name" x="822" y="95">在 PRX 處理</text><text class="sub" x="822" y="124">主責、回覆、續問</text>
           </g>
         </svg>
+        </div>
         <figcaption>候選流程。身分驗證及來源查詢的契約、權限與失敗行為需先共同確認。</figcaption>
       </figure>
 
@@ -726,12 +759,13 @@ ol.walk .daily { margin: .35rem 0 0; font-size: .85rem; color: var(--muted) }
       <p class="lead">登入只回答「你是誰」；能不能看來源資料，每查一次算一次：你的角色 × 手上的案件 × 來源 Grant（要 ACTIVE、版次也要對），三關全過才放行。</p>
       <div class="demo-action">
         <a class="button" href="#demo">回 Demo 看登入演示</a>
-        <span>去 Demo 玩玩看：三種登入、授權狀態隨你切。</span>
+        <span>Demo 目前只開放 PRX 獨立登入；NGSS3 SSO 與雙綁是規劃選項。授權狀態可在 Demo 工具箱切換。</span>
       </div>
       <figure class="figure iam-diagram">
+        <div class="pan" data-pan-label="帳號與權限架構圖">
         <svg viewBox="0 0 960 500" role="img" aria-labelledby="iam-diagram-title iam-diagram-desc">
           <title id="iam-diagram-title">帳號與權限雙路徑架構圖</title>
-          <desc id="iam-diagram-desc">報到這條路：從使用者經模擬 SSO 對到 PRX 成員；查資料這條路：政策跟來源 Grant 都點頭，才經模擬 Gateway 吐出你能看的欄位；管理員的 JWT 誰都不借；前端不直連來源。</desc>
+          <desc id="iam-diagram-desc">報到這條路：從使用者經規劃中的 NGSS3 SSO 對到 PRX 成員，Demo 目前只有 PRX 獨立登入；查資料這條路：政策跟來源 Grant 都點頭，才經模擬 Gateway 吐出你能看的欄位；管理員的 JWT 誰都不借；前端不直連來源。</desc>
           <defs>
             <marker id="iam-arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
               <polygon points="0 0, 10 3.5, 0 7" fill="#5d5670" />
@@ -762,8 +796,8 @@ ol.walk .daily { margin: .35rem 0 0; font-size: .85rem; color: var(--muted) }
           <text x="94" y="242" class="name" text-anchor="middle">使用者</text>
           <text x="94" y="264" class="sub" text-anchor="middle">瀏覽器操作</text>
           <rect x="212" y="80" width="190" height="68" rx="8" class="node" />
-          <text x="307" y="106" class="name" text-anchor="middle">模擬 SSO</text>
-          <text x="307" y="128" class="sub" text-anchor="middle">驗身份不收密碼</text>
+          <text x="307" y="106" class="name" text-anchor="middle">NGSS3 SSO</text>
+          <text x="307" y="128" class="sub" text-anchor="middle">規劃中・不收密碼</text>
           <rect x="450" y="80" width="190" height="68" rx="8" class="focus-node" />
           <text x="545" y="106" class="name" text-anchor="middle">成員映射</text>
           <text x="545" y="128" class="sub" text-anchor="middle">工作區成員資格</text>
@@ -787,6 +821,7 @@ ol.walk .daily { margin: .35rem 0 0; font-size: .85rem; color: var(--muted) }
           <line x1="660" y1="462" x2="700" y2="462" stroke="#be123c" stroke-width="3" stroke-dasharray="6 4" />
           <text x="708" y="467" class="edge-label">JWT 誰都不借</text>
         </svg>
+        </div>
         <figcaption>兩條路分開走：紫色管報到（你是誰），深紫管查資料（能不能看——政策跟 Grant 都要點頭）；登入成功不代表看得到；管理員的 JWT 誰都不借。</figcaption>
       </figure>
       <ul class="iam-legend">
@@ -800,7 +835,7 @@ ol.walk .daily { margin: .35rem 0 0; font-size: .85rem; color: var(--muted) }
           <h4>PRX-only 客服</h4>
           <p class="iam-can">不用 NGSS3 帳號，直接選人進來開工。</p>
           <ol>
-            <li>進工作區點自己，直接開工（掛 PRX Native）。</li>
+            <li>選入口與帳號後登入，直接開工（PRX 獨立登入）。</li>
             <li>要查來源資料前，先看 Grant 是不是 ACTIVE、版次對不對。</li>
             <li>被擋下來就去看授權進度等核准，別拿舊資料當證據。</li>
           </ol>
@@ -828,9 +863,9 @@ ol.walk .daily { margin: .35rem 0 0; font-size: .85rem; color: var(--muted) }
         </li>
         <li class="iam-card">
           <h4>NGSS3 員工</h4>
-          <p class="iam-can">從 NGSS3 跳過來，系統幫你對到 PRX 身分；登入成功不代表看得到來源。</p>
+          <p class="iam-can">規劃中：從 NGSS3 跳過來，對到 PRX 身分；登入成功不代表看得到來源。</p>
           <ol>
-            <li>走模擬 SSO 進來，系統幫你對到 PRX 成員。</li>
+            <li>SSO 開通後從 NGSS3 進來，系統幫你對到 PRX 成員。</li>
             <li>能不能看來源，還要再過政策跟 Grant 那一關。</li>
             <li>還在等核准（PENDING）或版次不對就等，別一直重刷。</li>
           </ol>
@@ -854,6 +889,7 @@ ol.walk .daily { margin: .35rem 0 0; font-size: .85rem; color: var(--muted) }
         <div><h4>正式</h4><p>上線速度、合不合法、資料放哪一區，都還沒人保證，這一章不背書。</p></div>
       </div>
 <h3 class="iam-subhead">被擋住別慌：看這張表，找對人</h3>
+      <div class="pan" data-pan-label="被拒原因與下一步對照表">
       <table class="comparison">
         <thead><tr><th scope="col">被拒原因</th><th scope="col">下一步</th><th scope="col">找誰</th></tr></thead>
         <tbody>
@@ -865,10 +901,11 @@ ol.walk .daily { margin: .35rem 0 0; font-size: .85rem; color: var(--muted) }
           <tr><td>還沒確認這是誰的案子</td><td>走合法綁定流程，別用名字或通訊帳號亂猜</td><td>客服主線</td></tr>
         </tbody>
       </table>
+      </div>
 <h3 class="iam-subhead">想挖更深？進階說明在這裡</h3>
-      <details><summary>怎麼進來</summary><div class="detail"><ul>            <li>PRX 帳號：點人頭直接進來，掛 PRX Native，不用 NGSS3。</li>
-            <li>NGSS3 登入：跳過去驗完身分再跳回來；不收密碼，登入成功不代表看得到來源。</li>
-            <li>兩個都綁：同一個人可以兩邊都綁，信箱一樣也不會自動合併，要重驗一次。</li></ul></div></details>
+      <details><summary>怎麼進來</summary><div class="detail"><ul>            <li>PRX 獨立登入：選入口與帳號後登入，不用 NGSS3。Demo 目前只開放這一種。</li>
+            <li>NGSS3 登入（規劃選項）：跳過去驗完身分再跳回來；不收密碼，登入成功不代表看得到來源。</li>
+            <li>兩個都綁（規劃選項）：同一個人可以兩邊都綁，信箱一樣也不會自動合併，要重驗一次。</li></ul></div></details>
       <details><summary>報到跟查資料是兩回事</summary><div class="detail"><ul>            <li>登入只幫你報到，沒發來源資料的門票。</li>
             <li>要看來源：你的角色 × 手上案件 × 綁定過的身分 × 欄位，再跟來源 Grant（ACTIVE＋版次）對一次，全部通過才放行。</li>
             <li>PRX-only 客服沒 NGSS3 也照這套玩；管理員的 JWT 誰都不借。</li></ul></div></details>
@@ -901,6 +938,22 @@ ol.walk .daily { margin: .35rem 0 0; font-size: .85rem; color: var(--muted) }
 </div>
 <footer class="frame footer"><span>PRX 產品設計與體驗 Demo　2026 年 11 月 3 日</span><a href="./guide.html">產品與整合指南</a><a href="#top">回到開頭</a></footer>
 <script>
+// Wide diagrams and tables pan inside their own region; expose it to keyboard and AT only while it overflows.
+const panObserver = new ResizeObserver(entries => {
+  for (const { target } of entries) {
+    if (target.scrollWidth > target.clientWidth + 1) {
+      target.setAttribute('role', 'region');
+      target.setAttribute('aria-label', target.dataset.panLabel + '（可左右捲動）');
+      target.tabIndex = 0;
+    } else {
+      target.removeAttribute('role');
+      target.removeAttribute('aria-label');
+      target.removeAttribute('tabindex');
+    }
+  }
+});
+document.querySelectorAll('.pan').forEach(pan => panObserver.observe(pan));
+
 for (const switcher of document.querySelectorAll('[data-switcher]')) {
   const choices = switcher.querySelector('.choices');
   const buttons = Array.from(choices.querySelectorAll('button'));

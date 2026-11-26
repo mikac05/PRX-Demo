@@ -1,14 +1,14 @@
 {
-  "source_commit": "f8fdc940509245f25392aaa151761e708dc45ec2",
+  "source_commit": "57e540bcff315678e5a27ac9c926b9a3f52dd71f",
   "dirty": false,
   "base": "/PRX-Demo/",
   "kind": "pages",
   "files": {
     ".gitattributes": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992",
     ".nojekyll": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "assets/index-BaACCs5t.css": "1542d0fe842d621676e8a3dec33906175a6f50b85d77f96034350da2c39c1850",
-    "assets/index-yGJswkRk.js": "3882a037f2d257e683f97736dddaa3d93bbff2bcbf70ff4836c7ff34afe2f30f",
-    "index.html": "99333fcc06aeddcc883d055eb7a863b8dc05dd65c3dfb35b770e8694cf4e8832",
+    "assets/index-B5QqD280.css": "31a8c0960b36dcf6b85c04723192e5d938d403df93b3f9353149f3daf7b8067c",
+    "assets/index-COW3-IGw.js": "5d6f0bc09c074e3e05ba873da7ff0d9dc8249c4515246d8970df227b79757da3",
+    "index.html": "d01136c369fea602001ffa651042bf88e2879f04a7a59820f330b3b44cd6af64",
     "legacy-experience/assets/home-green-black/game-dragons-rivalry.png": "eb48ff9e56edf2d273d5f1231cf3dac72e12eadb5e5b167b83eb3a817b074b72",
     "legacy-experience/assets/home-green-black/game-fortune-wild.png": "4a1d2219191aee967bbcab952795e4ba1b339c9d2e1ef00652423b1d4aabc7ec",
     "legacy-experience/assets/home-green-black/game-pussy-castle.png": "2de4066cdd4c96ea4a90f4189624633ea3f92960536c4e667ee403d4fe95258a",
@@ -118,8 +118,8 @@
     "legacy-experience/player-pages.js": "3c430a16455c24a0b73b5b5bf07e9f333f5fab6f655bba5c1599e049c04f668c",
     "legacy-experience/player-preview.js": "d4280a87aa593b04c031cb4256ff4f8c4b2bb87f092c6971215b9fb46d5342ef",
     "legacy-experience/selection-guard.js": "91bed3cf664395f7b6d12d5fbc52c79360158b94f9bce12bbe070e7772e3a83c",
-    "presentation/guide.html": "6e2d013a1100fce50810d2de41483304f2399865dd305cd3125e9db400107993",
-    "presentation/index.html": "fd0251c48cec242d47b42feed0818757f8dea8ca06dfc9a146fd706b32ea8c1c",
+    "presentation/guide.html": "d87ba65bdea4364aa329b2393a84df888bb1b52119f106c76f3c48688d714ceb",
+    "presentation/index.html": "e46ef388223a9223720e14fe9b523224247f0902822947bbcd9cad77bd2e0085",
     "README.md": "e16c871e1e09324b0e38669df3e842de921aada5822693ce4a8d6cc452e73561"
   }
 }

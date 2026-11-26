@@ -43,8 +43,21 @@ li + li { margin-top:.32rem }
 .status { padding:.85rem 1rem; background:var(--tint); border-radius:6px }
 section { padding:2rem 0; border-bottom:1px solid var(--rule) }
 section:target h2 { color:var(--link) }
-.table { overflow-x:auto }
+.table {
+  overflow-x:auto; overscroll-behavior-x:contain; padding-block:.7rem;
+  /* edge shadows appear only while columns are scrolled out of view */
+  background:
+    linear-gradient(to right, var(--white) 30%, rgb(255 255 255 / 0)) left / 2.5rem 100% no-repeat local,
+    linear-gradient(to left, var(--white) 30%, rgb(255 255 255 / 0)) right / 2.5rem 100% no-repeat local,
+    radial-gradient(farthest-side at 0 50%, rgb(36 33 55 / .2), rgb(36 33 55 / 0)) left / .8rem 100% no-repeat scroll,
+    radial-gradient(farthest-side at 100% 50%, rgb(36 33 55 / .2), rgb(36 33 55 / 0)) right / .8rem 100% no-repeat scroll,
+    var(--white);
+  background-clip:content-box;
+}
+.table:focus-visible { outline-offset:-3px }
 table { border-collapse:collapse; width:100%; margin:.7rem 0; background:var(--white) }
+.table table { margin:0; background:transparent }
+.table table:has(thead th:nth-child(3)) { min-width:34rem }
 th,td { padding:.65rem .8rem; border-bottom:1px solid var(--rule); text-align:left; vertical-align:top }
 thead th { background:var(--tint) }
 tbody th { min-width:8em }
@@ -52,6 +65,15 @@ code { font-size:.95em; overflow-wrap:anywhere }
 pre { padding:.8rem 1rem; overflow:auto; background:var(--white); border:1px solid var(--rule); border-radius:6px }
 pre code { overflow-wrap:normal }
 footer { padding:0 0 2rem; color:var(--muted); font-size:.9rem }
+@media (max-width: 900px) {
+  .frame { width:calc(100% - 40px) }
+  .layout { display:block }
+  .toc { position:static; max-height:none; overflow:visible; margin-top:2rem }
+  .toc ul { columns:2; column-gap:1rem }
+  .toc li { break-inside:avoid }
+  main { padding-top:2rem }
+  h2 { font-size:1.65rem }
+}
 </style>
 </head>
 <body>
@@ -105,7 +127,7 @@ footer { padding:0 0 2rem; color:var(--muted); font-size:.9rem }
 
     <section id="delivery">
       <h2>獨立工作台、跳轉、嵌入與 API</h2>
-      <div class="table"><table>
+      <div class="table" data-pan-label="交付方式比較表"><table>
         <thead><tr><th scope="col">方式</th><th scope="col">適用情境</th><th scope="col">畫面與責任</th></tr></thead>
         <tbody>
           <tr><th scope="row">獨立工作台</th><td>客服整班使用 PRX，集中待辦、對話、證據、交班和承諾。</td><td>PRX 負責完整桌面介面與自身案件。人員可從 PRX 網址直接開始。</td></tr>
@@ -131,7 +153,7 @@ footer { padding:0 0 2rem; color:var(--muted); font-size:.9rem }
     <section id="ngss3">
       <h2>NGSS3 首接怎麼起步</h2>
       <p>選一個授權測試工作區、一名客服、一種提款狀態查詢。接入前由三方交付以下資料，未知項目列入取證清單。</p>
-      <div class="table"><table>
+      <div class="table" data-pan-label="NGSS3 首接責任表"><table>
         <thead><tr><th scope="col">責任方</th><th scope="col">先確認的項目</th></tr></thead>
         <tbody>
           <tr><th scope="row">NGSS3</th><td>身分提供方與測試環境、員工識別與停權語義、租戶及品牌對應、唯讀欄位與狀態樣本、授權範圍、失敗、撤權與限流。</td></tr>
@@ -160,7 +182,7 @@ footer { padding:0 0 2rem; color:var(--muted); font-size:.9rem }
     <section id="deeplinks">
       <h2>NGSS3 哪裡可以連到 PRX</h2>
       <p>以下為可與 NGSS3 責任方核對的候選位置。選單名稱、畫面是否存在、可用欄位與授權仍待確認。</p>
-      <div class="table"><table>
+      <div class="table" data-pan-label="NGSS3 深層連結候選位置表"><table>
         <thead><tr><th scope="col">NGSS3 候選位置</th><th scope="col">PRX 目的地</th><th scope="col">先驗什麼</th></tr></thead>
         <tbody>
           <tr><th scope="row">後台主選單<br>「開啟 PRX 工作台」</th><td>到有權限的工作區及工作清單。建議先驗這個入口。</td><td>只帶工作區提示，PRX 重查成員資格。無對應時顯示可選工作區或拒絕。</td></tr>
@@ -204,7 +226,7 @@ footer { padding:0 0 2rem; color:var(--muted); font-size:.9rem }
     <section id="platforms">
       <h2>怎麼接第二個平台</h2>
       <p>共用工作區授權、案件、查證呈現、深層連結交換及稽核。每個來源各自適配身分、外部識別、狀態、事件、限流和撤權。訊息管道另做連線，讓 Telegram Bot 或其他入口不必跟著業務來源一併更換。</p>
-      <div class="table"><table>
+      <div class="table" data-pan-label="接入第二個平台差異表"><table>
         <thead><tr><th scope="col">差異</th><th scope="col">接入時怎麼處理</th></tr></thead>
         <tbody>
           <tr><th scope="row">不同企業登入</th><td>每個 IdP 各自登記可信簽發者、回呼及身分對應。將回呼驗證綁定本次預期簽發者，避免混用不同 IdP 的回應。PRX 保持同一套工作區與資源授權。</td></tr>
@@ -252,5 +274,22 @@ footer { padding:0 0 2rem; color:var(--muted); font-size:.9rem }
   </main>
 </div>
 <footer class="frame">PRX 產品設計與體驗 Demo　2026 年 11 月 3 日</footer>
+<script>
+// Wide tables pan inside their own region; expose it to keyboard and AT only while it overflows.
+const panObserver = new ResizeObserver(entries => {
+  for (const { target } of entries) {
+    if (target.scrollWidth > target.clientWidth + 1) {
+      target.setAttribute('role', 'region');
+      target.setAttribute('aria-label', target.dataset.panLabel + '（可左右捲動）');
+      target.tabIndex = 0;
+    } else {
+      target.removeAttribute('role');
+      target.removeAttribute('aria-label');
+      target.removeAttribute('tabindex');
+    }
+  }
+});
+document.querySelectorAll('.table').forEach(table => panObserver.observe(table));
+</script>
 </body>
 </html>
