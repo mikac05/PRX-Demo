@@ -100,7 +100,7 @@ summary:hover { background:var(--tint) }
 .switcher { margin-top:1.35rem; border:1px solid var(--rule); border-radius:8px; background:var(--white) }
 .switcher-title { padding:.9rem 1.1rem 0 }
 .choices { padding:.75rem 1.1rem; border-bottom:1px solid var(--rule); display:flex; gap:.5rem; flex-wrap:wrap }
-.choices button { min-height:42px; border:1px solid var(--muted); border-radius:5px; background:var(--white); padding:.35rem .8rem; font:700 .95rem/1.4 var(--font); color:var(--link); cursor:pointer }
+.choices button { min-height:42px; border:1px solid var(--muted); border-radius:6px; background:var(--white); padding:.35rem .8rem; font:700 .95rem/1.4 var(--font); color:var(--link); cursor:pointer }
 .choices button:hover { background:var(--tint) }
 .choices [aria-pressed="true"] { background:var(--tint); border-color:var(--accent); box-shadow:inset 0 -3px var(--accent) }
 .scenario { padding:1.1rem 1.25rem }
@@ -383,7 +383,7 @@ ol.walk .daily { margin: .35rem 0 0; font-size: .85rem; color: var(--muted) }
         </div>
         <div aria-live="polite">
           <article class="scenario" id="source-ready"><h3>有證據，才能給出可核對的進度</h3><p>來源回傳已受理，PRX 留下來源、時間和版本。客服可以告知已知進度，並約定下一次更新。</p></article>
-          <article class="scenario" id="source-down"><h3>來源未知，案件仍有主責</h3><p>查詢逾時時顯示目前無法確認。客服繼續處理仍有權限的案件，安排補查或交班，並告知玩家何時更新。</p></article>
+          <article class="scenario" id="source-down"><h3>來源未知，案件仍有主責</h3><p>查詢逾時時顯示目前無法確認。客服繼續處理仍有權限的案件，安排補查或交班，告知玩家何時更新。</p></article>
           <article class="scenario" id="source-revoked"><h3>來源撤權後停止查詢與使用受限明細</h3><p>PRX 重新檢查可見範圍，畫面與 AI 草稿都須遵守。仍有案件權限的客服可保留跟進責任，改由具權限者查證。</p></article>
         </div>
       </div>
@@ -391,7 +391,7 @@ ol.walk .daily { margin: .35rem 0 0; font-size: .85rem; color: var(--muted) }
       <div class="disclosures">
         <details id="topic-phase-zero"><summary>接入之前，各方要準備什麼？</summary><div class="detail">
           <dl><dt>NGSS3</dt><dd>提供去識別的員工、租戶與品牌範例，說明唯讀介面、狀態語義、錯誤、事件與撤權方式。</dd>
-          <dt>PRX</dt><dd>盤點能力差距，確認工作區成員資格、案件授權、可保留的資料與稽核方式，並列出待查項目。</dd>
+          <dt>PRX</dt><dd>盤點能力差距，確認工作區成員資格、案件授權、可保留的資料與稽核方式，列出待查項目。</dd>
           <dt>營運商</dt><dd>確認測試問題、資料用途、試點窗口、付款與事故責任。三方同意一條可重跑的驗收路徑。</dd></dl>
         </div></details>
         <details id="topic-launch"><summary>怎麼確保進到正確的工作區？</summary><div class="detail">
@@ -439,7 +439,7 @@ ol.walk .daily { margin: .35rem 0 0; font-size: .85rem; color: var(--muted) }
 
     <section class="chapter" id="demo" aria-labelledby="demo-title">
       <div class="chapter-title"><span aria-hidden="true">06</span><h2 id="demo-title">先選一種工作，再看這一案</h2></div>
-      <p class="lead">Demo 工具箱依任務列出 8 種工作（前 7 項為第一線客服日常任務，第 8 項為主管跨案追蹤看板）。切換情境前會彈窗確認，避免意外清除同 Session 操作與草稿；已就緒情境可直接續辦。工具箱預設只顯示該情境引導工具，亦可無損切換至進階測試工具。本機執行 <code>npm run dev</code> 後開啟 <a href="http://127.0.0.1:5173/#/demo">127.0.0.1:5173/#/demo</a>；線上公開展示為已發布版本（不包含本次本機修改）。</p>
+      <p class="lead">Demo 工具箱依任務列出 8 種工作。切換情境前會彈窗確認，避免意外清除同 Session 操作與草稿；已就緒情境可直接續辦。工具箱預設只顯示該情境引導工具，亦可無損切換至進階測試工具。本機執行 <code>npm run dev</code> 後開啟 <a href="http://127.0.0.1:5173/#/demo">127.0.0.1:5173/#/demo</a>。</p>
       <ol class="gates" id="mission-control">
         <li><details id="topic-queue" open><summary><strong>待回覆</strong><small>客服 1 · Alex Chen 的 Web IM</small></summary><div class="detail">
           <p>對話區可以直接輸入。公開回覆與內部紀錄共用同一個輸入區，切換後才送出。</p>
@@ -450,16 +450,16 @@ ol.walk .daily { margin: .35rem 0 0; font-size: .85rem; color: var(--muted) }
           <p class="bridge"><a href="https://mikac05.github.io/PRX-Demo/#/demo?situation=handoff" target="_blank" rel="noopener">線上已發布情境</a> ｜ <a href="http://127.0.0.1:5173/#/demo?situation=handoff">本機試用</a></p>
         </div></details></li>
         <li><details id="topic-player-context"><summary><strong>來源現在不能查</strong><small>客服 1 · 來源離線</small></summary><div class="detail">
-          <p>標題提示來源無法查驗，右側停在快取資料，附技術群組模擬工具。切勿將離線資料當成最新帳況。</p>
+          <p>標題提示來源無法查驗，右側停在快取資料，附技術群組模擬工具。不要把離線資料當成最新帳況。</p>
           <p class="bridge"><a href="https://mikac05.github.io/PRX-Demo/#/demo?situation=source" target="_blank" rel="noopener">線上已發布情境</a> ｜ <a href="http://127.0.0.1:5173/#/demo?situation=source">本機試用</a></p>
         </div></details></li>
         <li><details id="topic-closeout"><summary><strong>其餘五種</strong><small>改時間、請同事、補一件、保護中、誰卡住了</small></summary><div class="detail">
           <p>前七項為第一線客服日常任務，第八項為主管跨案追蹤看板：</p>
           <ul>
-            <li><strong>要改對客時間</strong>（客服 1）：承諾改期與外部系統轉發，看下一步與期限。（<a href="https://mikac05.github.io/PRX-Demo/#/demo?situation=promise" target="_blank" rel="noopener">線上已發布</a> ｜ <a href="http://127.0.0.1:5173/#/demo?situation=promise">本機試用</a>）</li>
+            <li><strong>要改對客時間</strong>（客服 1）：承諾改期與外部系統轉交，看下一步與期限。（<a href="https://mikac05.github.io/PRX-Demo/#/demo?situation=promise" target="_blank" rel="noopener">線上已發布</a> ｜ <a href="http://127.0.0.1:5173/#/demo?situation=promise">本機試用</a>）</li>
             <li><strong>請同事看</strong>（客服 1）：技術支援請教，主責不轉移，可查看受邀同事視角。（<a href="https://mikac05.github.io/PRX-Demo/#/demo?situation=consult" target="_blank" rel="noopener">線上已發布</a> ｜ <a href="http://127.0.0.1:5173/#/demo?situation=consult">本機試用</a>）</li>
             <li><strong>事件批次回覆</strong>（客服 1）：收件匣多選批次處理，支援事件通報與統一回覆。（<a href="https://mikac05.github.io/PRX-Demo/#/demo?situation=batch" target="_blank" rel="noopener">線上已發布</a> ｜ <a href="http://127.0.0.1:5173/#/demo?situation=batch">本機試用</a>）</li>
-            <li><strong>TG 綁定與選單</strong>（服務助手）：Telegram 5 大接待選單與帳號綁定通道。（<a href="https://mikac05.github.io/PRX-Demo/#/demo?situation=bot" target="_blank" rel="noopener">線上已發布</a> ｜ <a href="http://127.0.0.1:5173/#/demo?situation=bot">本機試用</a>）</li>
+            <li><strong>TG 綁定與選單</strong>（服務助手）：Telegram 5 個接待選單與帳號綁定通道。（<a href="https://mikac05.github.io/PRX-Demo/#/demo?situation=bot" target="_blank" rel="noopener">線上已發布</a> ｜ <a href="http://127.0.0.1:5173/#/demo?situation=bot">本機試用</a>）</li>
             <li><strong>誰卡住了</strong>（主管）：主管跨案案件區（CaseArea），鳥瞰卡住與即將到期案件。（<a href="https://mikac05.github.io/PRX-Demo/#/demo?situation=stuck" target="_blank" rel="noopener">線上已發布</a> ｜ <a href="http://127.0.0.1:5173/#/demo?situation=stuck">本機試用</a>）</li>
           </ul>
         </div></details></li>

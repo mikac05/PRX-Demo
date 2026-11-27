@@ -146,7 +146,7 @@ footer { padding:0 0 2rem; color:var(--muted); font-size:.9rem }
         <li><strong>NGSS3 或其他業務來源。</strong> 決定會員、錢包、交易狀態與業務規則。PRX 記錄該次查證的來源、觀測時間、版本及授權依據。</li>
         <li><strong>PRX。</strong> 決定自有案件的主責、協作、交班與承諾。若保留第三方客服主檔，兩邊事先指定單一案件主檔並約定回寫。</li>
         <li><strong>訊息管道。</strong> 提供收件、目的地與投遞回執。訊息送達、交易到帳、案件解決是三個分開的結果。</li>
-        <li><strong>權限。</strong> 連線、環境、來源租戶和品牌共同界定資料範圍。集團管理、付款或轉售關係不會自動授予案件內容。搜尋、附件、快取與 AI 引用都依當下授權過濾。</li>
+        <li><strong>權限。</strong> 連線、環境、來源租戶和品牌共同界定資料範圍，集團管理、付款或轉售關係不會自動授予案件內容。搜尋、附件、快取與 AI 引用都依當下授權過濾。</li>
       </ul>
     </section>
 
@@ -167,7 +167,7 @@ footer { padding:0 0 2rem; color:var(--muted); font-size:.9rem }
 
     <section id="sso">
       <h2>建議的單一登入方式</h2>
-      <p><strong>優先驗證 OIDC Authorization Code Flow 搭配 PKCE。</strong> 若 NGSS3 能提供可信且可維運的 OIDC 身分提供方，PRX 可先直接接入。若兩個系統已有共同的企業 IdP，可由雙方分別註冊應用程式。後續若需要接不同 OIDC 或 SAML IdP，再評估成熟的身分代理，統一交給 PRX 可驗證的登入結果。</p>
+      <p><strong>優先驗證 OIDC Authorization Code Flow 搭配 PKCE。</strong> 若 NGSS3 能提供可信且可維運的 OIDC 身分提供方，PRX 可先直接接入。若兩個系統已有共同的企業 IdP，可由雙方分別註冊應用程式。之後要接不同 OIDC 或 SAML IdP 時，再評估成熟的身分代理，統一交給 PRX 可驗證的登入結果。</p>
       <ol>
         <li>客服點 NGSS3 入口，進入 PRX 的頂層頁面。PRX 建立登入交易，向已登記的 IdP 發起授權請求，使用固定回呼、PKCE S256、<code>state</code> 與 <code>nonce</code>。</li>
         <li>IdP 的工作階段有效且符合政策時，可沿用登入狀態。需要重新登入或 MFA 時，依 IdP 政策提示。</li>
@@ -254,7 +254,7 @@ footer { padding:0 0 2rem; color:var(--muted); font-size:.9rem }
       <h2>現有 Demo 怎麼走查</h2>
       <ol>
         <li>執行 <code>npm run dev</code>，開啟 <a href="http://127.0.0.1:5173/#/demo">127.0.0.1:5173/#/demo</a>。Demo 工具裡選一種工作。</li>
-        <li>待回覆可以打字；待接受的交班先按接受；來源不能查時看右側資料。要改時間才有快進，要補件才有補件範例。</li>
+        <li>待回覆可以打字，待接受的交班先按接受，來源不能查時看右側資料。要改時間才有快進，要補件才有補件範例。</li>
         <li>要改時間、請同事、請客戶補件、保護中、誰卡住了，各是一列。只填畫面上空著的欄位。</li>
         <li>左上角標誌回到八種工作。選取會重置這個 Session 的所有分頁。</li>
       </ol>

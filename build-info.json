@@ -1,14 +1,14 @@
 {
-  "source_commit": "6c0f80728ae5295534e8f08d8a06c4d22a8d48b1",
+  "source_commit": "b33c016456766396261ebc00fc9cf26d8b5f1b4c",
   "dirty": false,
   "base": "/PRX-Demo/",
   "kind": "pages",
   "files": {
     ".gitattributes": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
     ".nojekyll": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "assets/index-Bn2w3ndo.js": "15f51a9b5d71f92c13a75a50d918d33712d1888c02e4a76f46086fa6aafc491f",
-    "assets/index-CvISwsOn.css": "a38c413a45ff57edd936b88cda40f09354824b678a45dc0442812b2085d47ad3",
-    "index.html": "791da50d31365d1f8613d2ef70fad50cde4b1b51a79b342f2c1f376d9bb1c6ea",
+    "assets/index-C_0k1fsr.css": "a669fdc7815d21e61f870f9578907018b762b86ed472b0f8bf74e3a441900d74",
+    "assets/index-D-RrCt80.js": "4ef9eef3cb8847fa43e905e748622829490abea5ccbd738c10617cc46c7147c9",
+    "index.html": "425d929e0a63774cac77eedeb9cd4fb25e79061d4215a4d76f7e91896d972809",
     "legacy-experience/assets/home-green-black/game-dragons-rivalry.png": "eb48ff9e56edf2d273d5f1231cf3dac72e12eadb5e5b167b83eb3a817b074b72",
     "legacy-experience/assets/home-green-black/game-fortune-wild.png": "4a1d2219191aee967bbcab952795e4ba1b339c9d2e1ef00652423b1d4aabc7ec",
     "legacy-experience/assets/home-green-black/game-pussy-castle.png": "2de4066cdd4c96ea4a90f4189624633ea3f92960536c4e667ee403d4fe95258a",
@@ -118,8 +118,8 @@
     "legacy-experience/player-pages.js": "3c430a16455c24a0b73b5b5bf07e9f333f5fab6f655bba5c1599e049c04f668c",
     "legacy-experience/player-preview.js": "d4280a87aa593b04c031cb4256ff4f8c4b2bb87f092c6971215b9fb46d5342ef",
     "legacy-experience/selection-guard.js": "91bed3cf664395f7b6d12d5fbc52c79360158b94f9bce12bbe070e7772e3a83c",
-    "presentation/guide.html": "d87ba65bdea4364aa329b2393a84df888bb1b52119f106c76f3c48688d714ceb",
-    "presentation/index.html": "e46ef388223a9223720e14fe9b523224247f0902822947bbcd9cad77bd2e0085",
+    "presentation/guide.html": "5ade2fd8ebda6ad5e5ec544a228859573452d1b2d94f4e2a94b3c5eabcc826a6",
+    "presentation/index.html": "72255a259c7871b6dcd2efc2f3939142cd32815acc5909d4288b77c4b111e4a6",
     "README.md": "461cb85b3ea98ccd09043f8091181a67c8b8b3f2ca3b09c9a8e45cfdd32702ae"
   }
 }
